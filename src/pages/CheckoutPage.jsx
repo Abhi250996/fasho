@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { useOrder } from "../context/OrderContext";
 
-import { processPayment } from "../services/paymentService";
-
 import PaymentSection from "../components/checkout/PaymentSection";
 
 const CheckoutPage = () => {

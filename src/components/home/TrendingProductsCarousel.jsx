@@ -1,6 +1,13 @@
 import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Heart, ShoppingBag, Star } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Heart,
+  ShoppingBag,
+  Star,
+} from "lucide-react";
 import { FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -110,20 +117,14 @@ function TrendingProductCard({ product }) {
           <motion.div
             initial={false}
             animate={{
-              scale: added ? [1, 1.2, 1] : 1,
+              scale: added ? [1, 1.25, 1] : 1,
             }}
             transition={{ duration: 0.45 }}
             className="flex items-center gap-3"
           >
             {added ? (
               <>
-                <motion.div
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Check className="size-4 stroke-[2.5]" />
-                </motion.div>
+                <Check className="size-4 stroke-[2.4]" />
                 Added To Cart
               </>
             ) : (

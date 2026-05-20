@@ -9,6 +9,7 @@ import OrderSuccessPage from "./pages/OrderSuccessPage";
 
 import { createPageTransition } from "./lib/animations";
 import { useRevealAnimation } from "./hooks/useRevealAnimation";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const appRef = useRef(null);
@@ -45,6 +46,7 @@ function App() {
           <Route path="/" element={<LuxuryHero />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/cart" element={<CartPage />} />
 
           <Route path="/order-success" element={<OrderSuccessPage />} />
         </Routes>

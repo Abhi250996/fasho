@@ -12,6 +12,7 @@ import {
   Truck,
   User,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroBg from "../assets/hero-bg.png";
 import BestSellerSection from "./home/BestSellerSection";
 import NewCollectionBanner from "./home/NewCollectionBanner";
@@ -88,6 +89,7 @@ function Navbar() {
     (total, item) => total + item.quantity,
     0,
   );
+  const navigate = useNavigate();
   return (
     <motion.header
       initial={{ opacity: 0, y: -18 }}
@@ -127,10 +129,9 @@ function Navbar() {
               <Icon className="size-5 stroke-[1.8]" />
             </button>
           ))}
-
           <button
             type="button"
-            onClick={() => setIsCartOpen(true)}
+            onClick={() => navigate("/cart")}
             className="relative grid size-10 place-items-center rounded-full transition duration-300 hover:bg-white/45 hover:shadow-lg hover:shadow-[#526632]/15"
             aria-label="Shopping bag"
           >
@@ -455,9 +456,9 @@ export default function LuxuryHero() {
       <div data-global-reveal>
         <NewCollectionBanner />
       </div>
-      <div data-global-reveal>
+      {/* <div data-global-reveal>
         <TrendingProductsCarousel />
-      </div>
+      </div> */}
       <div data-global-reveal>
         <AboutBrandSection />
       </div>

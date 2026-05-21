@@ -30,13 +30,13 @@ function Navbar() {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  /* SCROLL EFFECT */
+  /* SIMPLE SCROLL EFFECT */
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -60,12 +60,12 @@ function Navbar() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "border-b border-black/5 bg-[#ecead7]/92 shadow-lg shadow-black/5 backdrop-blur-xl"
-            : "bg-transparent"
+            : "bg-[#ecead7]/72 backdrop-blur-lg"
         }`}
       >
         <nav
           className={`relative mx-auto flex w-full max-w-[1760px] items-center justify-between px-4 transition-all duration-300 sm:px-6 lg:px-14 ${
-            isScrolled ? "py-3 lg:py-4" : "py-4 lg:py-6"
+            isScrolled ? "py-3 lg:py-4" : "py-4 lg:py-5"
           }`}
         >
           {/* LOGO */}

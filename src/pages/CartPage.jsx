@@ -2,6 +2,8 @@ import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 function CartPage() {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ function CartPage() {
 
   return (
     <main className="min-h-screen bg-[#ecead7] px-5 pb-20 pt-32 text-stone-950 sm:px-8 lg:px-14">
+      <Navbar />
       {/* Ambient Background */}
       <div className="pointer-events-none fixed left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cfd7a8]/35 blur-3xl" />
       <div className="pointer-events-none fixed bottom-[-10%] right-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#d8c9ae]/35 blur-3xl" />
@@ -234,6 +237,7 @@ function CartPage() {
           </div>
         )}
       </div>
+      <Footer />
     </main>
   );
 }

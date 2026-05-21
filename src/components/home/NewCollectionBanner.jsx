@@ -1,94 +1,142 @@
-import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
-import heroBg from '../../assets/hero-bg.png'
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const luxuryEase = [0.22, 1, 0.36, 1]
+const luxuryEase = [0.22, 1, 0.36, 1];
 
 export default function NewCollectionBanner() {
   return (
-    <section className="relative overflow-hidden bg-[#ecead7] px-5 py-20 text-stone-950 sm:px-8 sm:py-24 lg:px-14 lg:py-32">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#ecead7] via-[#ecead7]/95 to-transparent" />
+    <section className="bg-[#ecead7] px-4 py-8 sm:px-6 lg:px-10 lg:py-12">
       <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, 18, 0], y: [0, -16, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-[-9%] top-24 h-96 w-96 rounded-full bg-[#cfd7a8]/45 blur-3xl"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, -20, 0], y: [0, 18, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-12 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#dbc5a4]/55 blur-3xl"
-      />
-
-      <motion.div
-        initial={{ opacity: 0, y: 34 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.95, ease: luxuryEase }}
-        className="relative mx-auto grid max-w-[1620px] overflow-hidden rounded-2xl border border-white/45 bg-white/30 shadow-2xl shadow-[#39461e]/14 backdrop-blur-sm lg:min-h-[720px] lg:grid-cols-[1.08fr_0.92fr]"
+        initial={{
+          opacity: 0,
+          y: 30,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        viewport={{
+          once: true,
+        }}
+        transition={{
+          duration: 0.9,
+          ease: luxuryEase,
+        }}
+        className="mx-auto grid max-w-[1700px] overflow-hidden rounded-[1.8rem] border border-white/40 bg-white/40 shadow-[0_15px_60px_rgba(0,0,0,0.05)] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]"
       >
-        <motion.div
-          whileHover={{ scale: 1.015 }}
-          transition={{ duration: 0.7, ease: luxuryEase }}
-          className="relative min-h-[440px] overflow-hidden bg-[#dfdcc2] sm:min-h-[560px] lg:min-h-full"
-        >
-          <motion.img
-            src={heroBg}
-            alt="New season luxury fashion campaign"
-            animate={{ y: [0, -16, 0], scale: [1.03, 1.07, 1.03] }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            className="h-full w-full object-cover object-[64%_center]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/28 via-transparent to-[#ecead7]/22" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-stone-950/42 to-transparent lg:hidden" />
-        </motion.div>
+        {/* LEFT CONTENT */}
+        <div className="relative flex items-center px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-10">
+          {/* GLOW */}
+          <div className="absolute left-[-10%] top-[-20%] h-52 w-52 rounded-full bg-[#cad39f]/25 blur-3xl" />
 
-        <div className="relative flex items-center px-6 py-14 sm:px-10 sm:py-16 lg:px-16 xl:px-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.72),transparent_34%),linear-gradient(135deg,rgba(242,237,214,0.86),rgba(221,226,187,0.68))]" />
-          <div className="absolute left-6 top-6 hidden size-24 rounded-full border border-white/45 bg-white/20 backdrop-blur-md sm:block" />
-          <div className="absolute bottom-8 right-8 hidden h-28 w-28 rounded-full border border-[#405821]/15 bg-[#748542]/12 backdrop-blur-sm lg:block" />
+          <div className="relative z-10 max-w-2xl">
+            {/* LABEL */}
+            <div className="flex items-center gap-3">
+              <div className="h-px w-10 bg-[#526632]" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{
-              opacity: { duration: 0.8, ease: luxuryEase },
-              y: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
-            }}
-            className="relative mx-auto max-w-2xl text-center lg:mx-0 lg:text-left"
-          >
-            <div className="mb-6 flex items-center justify-center gap-4 lg:justify-start">
-              <Sparkles className="size-5 text-[#6d7d3e]" />
-              <p className="text-xs font-extrabold uppercase tracking-[0.34em] text-[#6d7d3e] sm:text-sm">
-                New Season Collection
+              <p className="text-[9px] font-extrabold uppercase tracking-[0.3em] text-[#6d7d3e] sm:text-[10px]">
+                New Collection 2026
               </p>
             </div>
 
-            <h2 className="font-serif text-[clamp(3.4rem,7.4vw,7.2rem)] font-medium leading-[0.88] tracking-normal">
-              Crafted For
-              <span className="block text-[#3f571f]">Modern Living</span>
+            {/* HEADING */}
+            <h2 className="mt-5 font-serif text-[clamp(2.3rem,5vw,5rem)] leading-[0.92] tracking-[-0.05em] text-stone-950">
+              Quiet
+              <span className="block text-[#405821]">Luxury.</span>
             </h2>
 
-            <p className="mx-auto mt-7 max-w-xl text-lg leading-8 text-stone-800 sm:text-xl sm:leading-9 lg:mx-0">
-              A refined edit of timeless layers, tactile textures, and elevated
-              essentials designed for quiet confidence from sunrise to evening.
+            {/* TEXT */}
+            <p className="mt-5 max-w-xl text-sm leading-7 text-stone-700 sm:text-[15px] sm:leading-8">
+              Refined silhouettes, premium textures, and timeless essentials
+              inspired by elevated contemporary minimalism.
             </p>
 
-            <motion.a
-              href="#collections"
-              whileHover={{ y: -3, scale: 1.025 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-10 inline-flex items-center gap-5 rounded-full bg-[#405821] px-8 py-5 text-xs font-extrabold uppercase tracking-[0.22em] text-white shadow-2xl shadow-[#405821]/25 transition duration-300 hover:bg-[#314417] hover:shadow-[#405821]/45 sm:text-sm"
-            >
-              Explore Collection
-              <ArrowRight className="size-5 stroke-[1.9] transition duration-300 group-hover:translate-x-1" />
-            </motion.a>
+            {/* BUTTONS */}
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link
+                to="/collections"
+                className="group inline-flex items-center gap-3 rounded-full bg-[#405821] px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.2em] text-white shadow-lg shadow-[#405821]/15 transition duration-300 hover:bg-[#314417] sm:px-7 sm:text-[10px]"
+              >
+                Explore Now
+                <ArrowRight className="size-4 transition duration-300 group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                to="/new-in"
+                className="rounded-full border border-[#405821]/10 bg-white/70 px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.2em] text-stone-800 transition duration-300 hover:bg-white sm:px-7 sm:text-[10px]"
+              >
+                New Arrivals
+              </Link>
+            </div>
+
+            {/* STATS */}
+            <div className="mt-7 grid grid-cols-3 gap-3 border-t border-black/5 pt-5">
+              {[
+                {
+                  value: "240+",
+                  label: "Pieces",
+                },
+                {
+                  value: "50K",
+                  label: "Clients",
+                },
+                {
+                  value: "4.9",
+                  label: "Rating",
+                },
+              ].map((item) => (
+                <div key={item.label}>
+                  <h3 className="text-lg font-semibold text-[#405821] sm:text-xl">
+                    {item.value}
+                  </h3>
+
+                  <p className="mt-1 text-[9px] uppercase tracking-[0.16em] text-stone-500 sm:text-[10px]">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT IMAGE */}
+        <div className="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop"
+            alt="Luxury fashion collection"
+            className="h-[260px] w-full object-cover object-center sm:h-[340px] lg:h-full"
+          />
+
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-transparent" />
+
+          {/* FLOATING CARD */}
+          <motion.div
+            animate={{
+              y: [0, -8, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-4 left-4 rounded-[1.2rem] bg-white/15 p-4 shadow-xl backdrop-blur-xl sm:bottom-6 sm:left-6 sm:p-5"
+          >
+            <p className="text-[9px] font-extrabold uppercase tracking-[0.22em] text-white/70">
+              Editorial Drop
+            </p>
+
+            <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">
+              Modern Essentials
+            </h3>
+
+            <p className="mt-2 max-w-[200px] text-xs leading-5 text-white/75 sm:text-sm">
+              Elevated wardrobe staples designed for timeless sophistication.
+            </p>
           </motion.div>
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

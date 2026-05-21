@@ -1,224 +1,185 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Heart } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
 import { socialGalleryData } from "../../data/socialGalleryData";
 
 const luxuryEase = [0.22, 1, 0.36, 1];
 
-const reveal = {
-  hidden: {
-    opacity: 0,
-    y: 32,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.9,
-      ease: luxuryEase,
-    },
-  },
-};
-
-function InstagramMark({ className = "" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <rect
-        width="17"
-        height="17"
-        x="3.5"
-        y="3.5"
-        rx="5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <circle cx="12" cy="12" r="3.8" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
-    </svg>
-  );
-}
-
-function GalleryItem({ item, index }) {
-  return (
-    <motion.a
-      href="#social"
-      initial={{ opacity: 0, y: 26 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.08,
-        ease: luxuryEase,
-      }}
-      whileHover={{ y: -6 }}
-      className={`group relative overflow-hidden ${
-        index === 0 ? "sm:col-span-2 lg:row-span-2" : ""
-      }`}
-      aria-label={`View Instagram post by ${item.username}`}
-    >
-      <div
-        className={`relative overflow-hidden rounded-[2rem] ${
-          index === 0
-            ? "h-[420px] sm:h-[520px] lg:h-[640px]"
-            : "h-[280px] sm:h-[320px] lg:h-[300px]"
-        }`}
-      >
-        <img
-          src={item.image}
-          alt={`Editorial fashion post by ${item.username}`}
-          className={`absolute inset-0 h-full w-full object-cover ${item.imagePosition} transition duration-[1200ms] ease-out group-hover:scale-105`}
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
-
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/20" />
-
-        {/* Center Icon */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileHover={{ scale: 1 }}
-          className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 opacity-0 transition duration-500 group-hover:opacity-100"
-        >
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md">
-            <InstagramMark className="size-7 text-white" />
-          </div>
-
-          <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white">
-            View Post
-          </p>
-        </motion.div>
-
-        {/* Bottom Content */}
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-white sm:p-7">
-          <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#e8e4ca]">
-              {item.username}
-            </p>
-
-            <div className="mt-3 flex items-center gap-2 text-sm font-bold">
-              <Heart className="size-4 fill-white stroke-[1.8]" />
-              {item.likes}
-            </div>
-          </div>
-
-          <ArrowRight className="size-5 opacity-0 transition duration-500 group-hover:translate-x-1 group-hover:opacity-100" />
-        </div>
-      </div>
-    </motion.a>
-  );
-}
-
 export default function InstagramGallerySection() {
   return (
-    <section
-      id="social"
-      className="relative overflow-hidden bg-[#ecead7] px-5 py-20 text-stone-950 sm:px-8 lg:px-14 lg:py-24"
-    >
-      {/* Ambient Glow */}
-      <motion.div
-        animate={{
-          x: [0, 18, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute right-[-10%] top-16 h-[24rem] w-[24rem] rounded-full bg-[#cdd5a6]/40 blur-3xl"
-      />
-
-      <motion.div
-        animate={{
-          x: [0, -16, 0],
-          y: [0, 20, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute bottom-0 left-[-10%] h-[26rem] w-[26rem] rounded-full bg-[#dbc5a4]/40 blur-3xl"
-      />
-
-      <div className="relative mx-auto max-w-[1700px]">
-        {/* Header */}
+    <section className="overflow-hidden bg-[#ecead7] px-4 py-12 sm:px-6 lg:px-10 lg:py-20">
+      <div className="mx-auto max-w-[1700px]">
+        {/* HEADER */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={reveal}
-          className="mb-14 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+          initial={{
+            opacity: 0,
+            y: 24,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: luxuryEase,
+          }}
+          className="mb-8 flex flex-col gap-5 lg:mb-12 lg:flex-row lg:items-end lg:justify-between"
         >
-          <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.34em] text-[#6d7d3e]">
-              FASHO Journal
-            </p>
+          <div className="max-w-3xl">
+            {/* LABEL */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#405821]/10 bg-white/60 px-4 py-2 shadow-sm backdrop-blur-md">
+              <div className="h-2 w-2 rounded-full bg-[#405821]" />
 
-            <div className="mt-5 h-px w-20 bg-[#526632]" />
+              <span className="text-[9px] font-extrabold uppercase tracking-[0.24em] text-[#405821]">
+                FASHO Community
+              </span>
+            </div>
 
-            <h2 className="mt-8 font-serif text-[clamp(3.5rem,7vw,7rem)] leading-[0.92] tracking-[-0.04em]">
-              Styled By
-              <span className="block text-[#405821]">The Community.</span>
+            {/* TITLE */}
+            <h2 className="mt-5 font-serif text-[clamp(2.4rem,5vw,5.2rem)] leading-[0.9] tracking-[-0.06em] text-stone-950">
+              Worn In
+              <span className="block text-[#405821]">Real Life.</span>
             </h2>
           </div>
 
-          <p className="max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
-            Moments captured through modern tailoring, timeless textures, and
-            understated luxury around the world.
-          </p>
-        </motion.div>
-
-        {/* Editorial Grid */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {socialGalleryData.slice(0, 5).map((item, index) => (
-            <GalleryItem key={item.id} item={item} index={index} />
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.9,
-            delay: 0.12,
-            ease: luxuryEase,
-          }}
-          className="mt-16 flex flex-col items-start justify-between gap-8 border-t border-black/6 pt-10 lg:flex-row lg:items-center"
-        >
-          <div className="flex items-center gap-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#405821] text-white">
-              <InstagramMark className="size-6" />
-            </div>
-
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#6d7d3e]">
-                @FASHO.STUDIO
-              </p>
-
-              <p className="mt-2 text-lg text-stone-700">
-                Daily luxury edits inspired by contemporary fashion culture.
-              </p>
-            </div>
-          </div>
-
-          <motion.a
-            href="#social"
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.3 }}
-            className="group inline-flex items-center gap-4 border-b border-[#405821] pb-3 text-sm font-extrabold uppercase tracking-[0.24em] text-[#405821]"
+          {/* BUTTON */}
+          <a
+            href="#"
+            className="group inline-flex items-center gap-3 rounded-full bg-[#405821] px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-white shadow-lg shadow-[#405821]/15 transition duration-300 hover:bg-[#314417]"
           >
-            Follow On Instagram
-            <ArrowRight className="size-4 transition duration-300 group-hover:translate-x-1" />
-          </motion.a>
+            Follow Us
+            <ArrowUpRight className="size-4 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </a>
         </motion.div>
+
+        {/* NEW CREATIVE LAYOUT */}
+        <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr] lg:gap-5">
+          {/* LEFT LARGE CARD */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 24,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: luxuryEase,
+            }}
+            className="group relative overflow-hidden rounded-[1.8rem]"
+          >
+            <div className="overflow-hidden aspect-[4/4.8] sm:aspect-[4/3.4] lg:h-full">
+              <img
+                src={socialGalleryData[0].image}
+                alt={socialGalleryData[0].username}
+                className={`h-full w-full object-cover ${socialGalleryData[0].imagePosition} transition duration-[1400ms] ease-out group-hover:scale-105`}
+              />
+            </div>
+
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+
+            {/* CONTENT */}
+            <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-white/70">
+                Editorial Feature
+              </p>
+
+              <h3 className="mt-3 max-w-lg text-2xl font-semibold leading-tight sm:text-4xl">
+                Modern silhouettes crafted for elevated everyday wear.
+              </h3>
+
+              <div className="mt-5 flex items-center gap-3">
+                <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-white/30">
+                  <img
+                    src={socialGalleryData[0].image}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold">
+                    {socialGalleryData[0].username}
+                  </p>
+
+                  <p className="text-xs text-white/70">
+                    {socialGalleryData[0].likes}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT GRID */}
+          <div className="grid grid-cols-2 gap-3 lg:gap-5">
+            {socialGalleryData.slice(1, 5).map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.2,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.05,
+                  ease: luxuryEase,
+                }}
+                whileHover={{
+                  y: -4,
+                }}
+                className="group relative overflow-hidden rounded-[1.3rem] bg-[#ddd7ca]"
+              >
+                {/* IMAGE */}
+                <div className="overflow-hidden aspect-[1/1.15]">
+                  <img
+                    src={item.image}
+                    alt={item.username}
+                    className={`h-full w-full object-cover ${item.imagePosition} transition duration-[1200ms] ease-out group-hover:scale-105`}
+                  />
+                </div>
+
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent opacity-90" />
+
+                {/* CONTENT */}
+                <div className="absolute inset-x-0 bottom-0 p-3 text-white sm:p-4">
+                  <div className="flex items-end justify-between gap-3">
+                    <div>
+                      <p className="text-[8px] font-extrabold uppercase tracking-[0.18em] text-white/65 sm:text-[9px]">
+                        {item.username}
+                      </p>
+
+                      <h3 className="mt-1 text-sm font-semibold sm:text-base">
+                        {item.likes}
+                      </h3>
+                    </div>
+
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition duration-300 group-hover:bg-white group-hover:text-stone-950">
+                      <ArrowUpRight className="size-3.5" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

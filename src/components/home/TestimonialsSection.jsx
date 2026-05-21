@@ -1,166 +1,140 @@
-import { motion } from 'framer-motion'
-import { BadgeCheck, Quote, Star } from 'lucide-react'
-import { testimonialsData } from '../../data/testimonialsData'
+import { motion } from "framer-motion";
+import { Star, Quote } from "lucide-react";
 
-const luxuryEase = [0.22, 1, 0.36, 1]
+import { testimonialsData } from "../../data/testimonialsData";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.12,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 34 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: luxuryEase },
-  },
-}
+const luxuryEase = [0.22, 1, 0.36, 1];
 
 function Rating({ rating }) {
   return (
-    <div className="flex items-center gap-1.5 text-[#6d7d3e]">
+    <div className="flex items-center gap-1 text-[#6d7d3e]">
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
-          className={`size-4 stroke-[1.8] transition duration-300 group-hover:scale-110 ${
-            index < rating ? 'fill-[#6d7d3e]' : 'fill-transparent opacity-35'
+          className={`size-3 stroke-[1.8] ${
+            index < rating ? "fill-[#6d7d3e]" : "fill-transparent opacity-30"
           }`}
         />
       ))}
     </div>
-  )
-}
-
-function TestimonialCard({ testimonial, index }) {
-  return (
-    <motion.article
-      variants={cardVariants}
-      whileHover={{ y: -10, scale: 1.01 }}
-      animate={{ y: [0, index % 2 === 0 ? -4 : 4, 0] }}
-      transition={{
-        y: {
-          duration: 7 + index,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        },
-        scale: { duration: 0.3 },
-      }}
-      className="group relative overflow-hidden rounded-xl border border-white/50 bg-white/38 p-7 shadow-2xl shadow-[#39461e]/8 backdrop-blur-md transition duration-500 hover:bg-white/52 hover:shadow-[#39461e]/20 sm:p-8 lg:p-9"
-    >
-      <div className="absolute right-6 top-6 text-[#405821]/10 transition duration-500 group-hover:text-[#405821]/18">
-        <Quote className="size-16 stroke-[1.2]" />
-      </div>
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/35 to-transparent opacity-70" />
-
-      <div className="relative">
-        <div className="mb-8 flex items-center gap-5">
-          <div className="relative">
-            <img
-              src={testimonial.image}
-              alt={testimonial.name}
-              className={`size-18 rounded-full border border-white/70 object-cover ${testimonial.imagePosition} shadow-2xl shadow-[#405821]/18 ring-4 ring-white/35 transition duration-500 group-hover:scale-105`}
-            />
-            {testimonial.verified && (
-              <span className="absolute -bottom-1 -right-1 grid size-7 place-items-center rounded-full bg-[#405821] text-white shadow-lg shadow-[#405821]/25">
-                <BadgeCheck className="size-4 stroke-[2]" />
-              </span>
-            )}
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold leading-tight text-stone-950 sm:text-2xl">
-              {testimonial.name}
-            </h3>
-            <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-stone-600">
-              {testimonial.role}
-            </p>
-          </div>
-        </div>
-
-        <Rating rating={testimonial.rating} />
-
-        <p className="mt-7 text-lg leading-8 text-stone-800 sm:text-xl sm:leading-9">
-          “{testimonial.review}”
-        </p>
-
-        <div className="mt-8 h-px w-full bg-gradient-to-r from-[#526632]/28 via-white/70 to-transparent" />
-
-        <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.22em] text-[#405821]">
-          {testimonial.verified ? 'Verified Client' : 'Editorial Client'}
-        </p>
-      </div>
-    </motion.article>
-  )
+  );
 }
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative overflow-hidden bg-[#ecead7] px-5 py-20 text-stone-950 sm:px-8 sm:py-24 lg:px-14 lg:py-32">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#ecead7] via-[#ecead7]/95 to-transparent" />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-[-8%] top-28 h-80 w-80 rounded-full bg-[#cdd5a6]/45 blur-3xl"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, -18, 0], y: [0, 20, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-16 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#dbc5a4]/55 blur-3xl"
-      />
-
-      <div className="relative mx-auto max-w-[1620px]">
+    <section className="overflow-hidden bg-[#ecead7] px-4 py-14 sm:px-8 lg:px-14 lg:py-24">
+      <div className="mx-auto max-w-[1700px]">
+        {/* TOP SECTION */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.45 }}
-          transition={{ duration: 0.9, ease: luxuryEase }}
-          className="mb-12 flex flex-col gap-6 lg:mb-16 lg:flex-row lg:items-end lg:justify-between"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: luxuryEase,
+          }}
+          className="mb-10 flex flex-col gap-6 border-b border-black/6 pb-8 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.34em] text-[#6d7d3e] sm:text-lg">
-              What Our Clients Say
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[#6d7d3e] sm:text-xs">
+              Client Stories
             </p>
-            <span className="mt-5 block h-px w-20 bg-[#526632]" />
-            <h2 className="mt-7 max-w-5xl font-serif text-[clamp(3.2rem,7vw,6.8rem)] font-medium leading-[0.9] tracking-normal">
-              Trusted By Thousands
-              <span className="block text-[#3f571f]">
-                Who Value Timeless Style
-              </span>
+
+            <h2 className="mt-4 max-w-3xl font-serif text-[clamp(2.6rem,6vw,5.5rem)] leading-[0.92] tracking-[-0.05em] text-stone-950">
+              What People
+              <span className="block text-[#405821]">Are Saying.</span>
             </h2>
           </div>
 
-          <p className="max-w-xl text-lg leading-8 text-stone-800 sm:text-xl">
-            A quiet luxury experience shaped by considered design, premium
-            service, and pieces customers return to season after season.
+          <p className="max-w-xl text-sm leading-7 text-stone-600 sm:text-base">
+            Refined quality and elevated essentials trusted by modern fashion
+            lovers worldwide.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.18 }}
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7"
-        >
+        {/* CREATIVE STACK */}
+        <div className="grid gap-4 lg:grid-cols-12 lg:gap-5">
           {testimonialsData.map((testimonial, index) => (
-            <TestimonialCard
+            <motion.article
               key={testimonial.id}
-              testimonial={testimonial}
-              index={index}
-            />
+              initial={{
+                opacity: 0,
+                y: 24,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: index * 0.06,
+                ease: luxuryEase,
+              }}
+              whileHover={{
+                y: -5,
+              }}
+              className={`group relative overflow-hidden rounded-[1.7rem] border border-white/40 bg-white/45 p-5 shadow-xl shadow-black/5 backdrop-blur-md transition duration-300 hover:shadow-black/10 sm:p-6 ${
+                index === 0
+                  ? "lg:col-span-5"
+                  : index === 1
+                    ? "lg:col-span-3 lg:mt-10"
+                    : "lg:col-span-4"
+              }`}
+            >
+              {/* QUOTE ICON */}
+              <Quote className="absolute right-5 top-5 size-10 text-[#405821]/10 sm:size-14" />
+
+              {/* USER */}
+              <div className="relative z-10 flex items-center gap-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className={`h-14 w-14 rounded-full object-cover ring-2 ring-white/60 ${testimonial.imagePosition}`}
+                />
+
+                <div>
+                  <h3 className="text-base font-semibold text-stone-950 sm:text-lg">
+                    {testimonial.name}
+                  </h3>
+
+                  <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 sm:text-[11px]">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+
+              {/* REVIEW */}
+              <p className="relative z-10 mt-6 text-sm leading-7 text-stone-700 sm:text-[15px] sm:leading-8">
+                “{testimonial.review}”
+              </p>
+
+              {/* FOOTER */}
+              <div className="relative z-10 mt-6 flex items-center justify-between border-t border-black/5 pt-5">
+                <Rating rating={testimonial.rating} />
+
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#405821]">
+                  Verified Client
+                </span>
+              </div>
+
+              {/* HOVER GLOW */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#dfe7be]/0 via-[#dfe7be]/0 to-[#dfe7be]/20 opacity-0 transition duration-500 group-hover:opacity-100" />
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
-  )
+  );
 }

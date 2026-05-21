@@ -1,30 +1,41 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Heart, ShoppingBag, Star } from "lucide-react";
+import { ArrowRight, Heart, ShoppingBag, Star, Check } from "lucide-react";
+
 import { bestSellerProducts } from "../../data/bestSellerProducts";
 import { useCart } from "../../context/CartContext";
-import { useState } from "react";
-import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const revealTransition = {
   duration: 0.9,
   ease: [0.22, 1, 0.36, 1],
 };
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: {
+    opacity: 0,
+  },
+
   visible: {
     opacity: 1,
+
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.12,
+      staggerChildren: 0.06,
+      delayChildren: 0.08,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 34 },
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: revealTransition,
   },
 };
@@ -35,8 +46,8 @@ function ProductRating({ rating }) {
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
-          className={`size-3.5 stroke-[1.8] ${
-            index < rating ? "fill-[#6d7d3e]" : "fill-transparent opacity-35"
+          className={`size-3 stroke-[1.8] ${
+            index < rating ? "fill-[#6d7d3e]" : "fill-transparent opacity-30"
           }`}
         />
       ))}
@@ -46,43 +57,49 @@ function ProductRating({ rating }) {
 
 function ProductCard({ product }) {
   const { addToCart } = useCart();
+
   const [added, setAdded] = useState(false);
+
   return (
     <motion.article
       variants={cardVariants}
-      whileHover={{ y: -10 }}
-      className="group relative rounded-xl border border-white/45 bg-white/35 p-3 shadow-2xl shadow-[#39461e]/8 backdrop-blur-sm transition-shadow duration-500 hover:shadow-[#39461e]/22"
+      whileHover={{ y: -4 }}
+      className="group relative rounded-[1.1rem] border border-white/40 bg-white/35 p-2 shadow-lg shadow-black/5 backdrop-blur-sm transition duration-300 hover:shadow-black/10"
     >
-      <div className="relative aspect-[3/4.15] overflow-hidden rounded-lg bg-[#dfdcc2]">
+      {/* IMAGE */}
+      <div className="relative aspect-[3/3.45] overflow-hidden rounded-[0.9rem] bg-[#dfdcc2]">
         <img
           src={product.image}
           alt={product.name}
-          className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] ease-out group-hover:scale-110 group-hover:opacity-0`}
+          className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-0`}
         />
 
         <img
           src={product.hoverImage}
           alt=""
           aria-hidden="true"
-          className={`absolute inset-0 h-full w-full scale-105 object-cover ${product.hoverPosition} opacity-0 transition duration-[1100ms] ease-out group-hover:scale-110 group-hover:opacity-100`}
+          className={`absolute inset-0 h-full w-full scale-105 object-cover ${product.hoverPosition} opacity-0 transition duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-100`}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/42 via-stone-950/0 to-[#f4ecd6]/5 opacity-0 transition duration-500 group-hover:opacity-100" />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
+        {/* NEW BADGE */}
         {product.isNew && (
-          <span className="absolute left-4 top-4 rounded-full border border-white/45 bg-white/65 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#405821] shadow-lg shadow-stone-950/5 backdrop-blur-md">
+          <span className="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[0.16em] text-[#405821] shadow-md backdrop-blur-md sm:text-[9px]">
             New
           </span>
         )}
 
+        {/* WISHLIST */}
         <button
           type="button"
-          className="absolute right-4 top-4 grid size-11 translate-y-2 place-items-center rounded-full border border-white/45 bg-white/55 text-stone-950 opacity-0 shadow-xl shadow-stone-950/10 backdrop-blur-md transition duration-500 hover:bg-white hover:text-[#405821] group-hover:translate-y-0 group-hover:opacity-100"
-          aria-label={`Add ${product.name} to wishlist`}
+          className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-white/70 text-stone-950 opacity-0 shadow-md backdrop-blur-md transition duration-300 hover:bg-white hover:text-[#405821] group-hover:opacity-100 sm:size-9"
         >
-          <Heart className="size-5 stroke-[1.8]" />
+          <Heart className="size-4 stroke-[1.8]" />
         </button>
 
+        {/* QUICK ADD */}
         <motion.button
           type="button"
           onClick={(e) => {
@@ -102,53 +119,54 @@ function ProductCard({ product }) {
               setAdded(false);
             }, 1800);
           }}
-          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.96 }}
-          className={`absolute inset-x-4 bottom-4 z-20 flex translate-y-5 items-center justify-center gap-3 rounded-full px-5 py-4 text-xs font-extrabold uppercase tracking-[0.2em] text-white shadow-2xl transition duration-500 group-hover:translate-y-0 ${
-            added
-              ? "bg-[#6d8a3c] shadow-[#6d8a3c]/40"
-              : "bg-[#405821] shadow-[#405821]/30 hover:bg-[#314417] hover:shadow-[#405821]/45"
+          className={`absolute inset-x-3 bottom-3 flex items-center justify-center rounded-full px-4 py-3 text-[9px] font-extrabold uppercase tracking-[0.16em] text-white shadow-lg transition duration-300 ${
+            added ? "bg-[#6d8a3c]" : "bg-[#405821] hover:bg-[#314417]"
           }`}
         >
           <motion.div
             initial={false}
             animate={{
-              scale: added ? [1, 1.25, 1] : 1,
+              scale: added ? [1, 1.14, 1] : 1,
             }}
-            transition={{ duration: 0.45 }}
-            className="flex items-center gap-3"
+            transition={{
+              duration: 0.4,
+            }}
+            className="flex items-center gap-2"
           >
             {added ? (
               <>
-                <Check className="size-4 stroke-[2.4]" />
-                Added To Cart
+                <Check className="size-3.5 stroke-[2.4]" />
+                Added
               </>
             ) : (
               <>
-                <ShoppingBag className="size-4 stroke-[1.9]" />
+                <ShoppingBag className="size-3.5 stroke-[1.9]" />
                 Quick Add
-                <ArrowRight className="size-4 stroke-[1.9] transition duration-300 group-hover:translate-x-1" />
               </>
             )}
           </motion.div>
         </motion.button>
       </div>
 
-      <div className="px-1 pb-2 pt-5">
-        <div className="mb-3 flex items-center justify-between gap-4">
-          <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#6d7d3e]">
+      {/* CONTENT */}
+      <div className="px-1 pb-1 pt-3">
+        {/* CATEGORY + RATING */}
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <p className="text-[8px] font-extrabold uppercase tracking-[0.18em] text-[#6d7d3e] sm:text-[9px]">
             {product.category}
           </p>
 
           <ProductRating rating={product.rating} />
         </div>
 
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="max-w-[14rem] text-xl font-semibold leading-snug text-stone-950 sm:text-2xl">
+        {/* TITLE + PRICE */}
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="line-clamp-2 max-w-[9rem] text-sm font-semibold leading-snug text-stone-950 sm:max-w-[12rem] sm:text-[15px] lg:text-base">
             {product.name}
           </h3>
 
-          <p className="text-lg font-semibold text-[#405821]">
+          <p className="shrink-0 text-sm font-semibold text-[#405821]">
             {product.price}
           </p>
         </div>
@@ -159,58 +177,82 @@ function ProductCard({ product }) {
 
 export default function BestSellerSection() {
   return (
-    <section className="relative overflow-hidden bg-[#ecead7] px-5 py-20 text-stone-950 sm:px-8 sm:py-24 lg:px-14 lg:py-32">
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#ecead7] via-[#ecead7]/94 to-transparent" />
+    <section className="relative overflow-hidden bg-[#ecead7] px-4 py-10 text-stone-950 sm:px-6 sm:py-12 lg:px-10 lg:py-16">
+      {/* GLOW */}
       <motion.div
         aria-hidden="true"
-        animate={{ y: [0, -18, 0], x: [0, 14, 0] }}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[-8%] top-20 h-80 w-80 rounded-full bg-[#cdd5a6]/45 blur-3xl"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={{ y: [0, 22, 0], x: [0, -12, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-16 left-[-10%] h-96 w-96 rounded-full bg-[#dcc8aa]/50 blur-3xl"
+        animate={{
+          y: [0, -14, 0],
+          x: [0, 10, 0],
+        }}
+        transition={{
+          duration: 13,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute right-[-10%] top-16 h-56 w-56 rounded-full bg-[#cdd5a6]/30 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-[1620px]">
+      <div className="relative mx-auto max-w-[1700px]">
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.45 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
           transition={revealTransition}
-          className="mb-12 flex flex-col gap-8 lg:mb-16 lg:flex-row lg:items-end lg:justify-between"
+          className="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.34em] text-[#6d7d3e] sm:text-lg">
-              Best Selling Pieces
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#6d7d3e] sm:text-xs">
+              Best Sellers
             </p>
-            <span className="mt-5 block h-px w-20 bg-[#526632]" />
-            <h2 className="mt-7 max-w-5xl font-serif text-[clamp(3.4rem,7.8vw,7.3rem)] font-medium leading-[0.88] tracking-normal">
+
+            <div className="mt-3 h-px w-14 bg-[#526632]" />
+
+            <h2 className="mt-4 max-w-4xl font-serif text-[clamp(2.2rem,5vw,4.8rem)] leading-[0.92] tracking-[-0.04em] text-stone-950">
               Designed To
               <span className="block text-[#3f571f]">Stand Out</span>
             </h2>
           </div>
 
-          <motion.a
-            href="#products"
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex w-fit items-center gap-5 rounded-full border border-[#405821]/25 bg-white/45 px-7 py-4 text-xs font-extrabold uppercase tracking-[0.22em] text-[#405821] shadow-xl shadow-[#39461e]/8 backdrop-blur-md transition duration-300 hover:bg-[#405821] hover:text-white hover:shadow-[#405821]/25 sm:text-sm"
+          <motion.div
+            whileHover={{
+              y: -2,
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
           >
-            View All Products
-            <ArrowRight className="size-5 stroke-[1.8]" />
-          </motion.a>
+            <Link
+              to="/collections"
+              className="inline-flex w-fit items-center gap-3 rounded-full border border-[#405821]/10 bg-white/50 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#405821] shadow-md shadow-black/5 backdrop-blur-md transition duration-300 hover:bg-[#405821] hover:text-white"
+            >
+              View All
+              <ArrowRight className="size-4 stroke-[1.8]" />
+            </Link>
+          </motion.div>
         </motion.div>
 
+        {/* PRODUCTS */}
         <motion.div
           id="products"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.16 }}
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 xl:grid-cols-4"
+          viewport={{
+            once: true,
+            amount: 0.12,
+          }}
+          className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
         >
           {bestSellerProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

@@ -10,6 +10,10 @@ import OrderSuccessPage from "./pages/OrderSuccessPage";
 import { createPageTransition } from "./lib/animations";
 import { useRevealAnimation } from "./hooks/useRevealAnimation";
 import CartPage from "./pages/CartPage";
+import CollectionPage from "./pages/CollectionPage";
+import LuxuryAboutSection from "./pages/LuxuryAboutSection";
+import ProfilePage from "./pages/ProfilePage";
+import ScrollToTop from "./common/ScrollToTop";
 
 function App() {
   const appRef = useRef(null);
@@ -42,13 +46,20 @@ function App() {
       {" "}
       <CartDrawer />
       <div ref={revealRef}>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<LuxuryHero />} />
+          <Route path="/about" element={<LuxuryAboutSection />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
+
           <Route path="/cart" element={<CartPage />} />
 
           <Route path="/order-success" element={<OrderSuccessPage />} />
+          <Route path="/account" element={<ProfilePage />} />
+
+          {/* DYNAMIC COLLECTION ROUTES */}
+          <Route path="/:type" element={<CollectionPage />} />
         </Routes>
       </div>
     </div>

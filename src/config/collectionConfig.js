@@ -19,7 +19,7 @@ export const collectionConfig = {
     products: menProducts,
 
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&?w=900&auto=format&fit=crop",
 
     background: "from-[#dfe5c6] via-[#ebe7db] to-[#f5efe4]",
 
@@ -75,7 +75,7 @@ export const collectionConfig = {
     products: womenProducts,
 
     image:
-      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&?w=900&auto=format&fit=crop",
 
     background: "from-[#f3e3df] via-[#f6efea] to-[#f8f4f1]",
 
@@ -131,7 +131,7 @@ export const collectionConfig = {
     products: [...menProducts, ...womenProducts],
 
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&?w=900&auto=format&fit=crop",
 
     background: "from-[#ece6d7] via-[#f4f1ea] to-[#e5dcc8]",
 
@@ -181,7 +181,7 @@ export const collectionConfig = {
     products: [...menProducts, ...womenProducts],
 
     image:
-      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&?w=900&auto=format&fit=crop",
 
     background: "from-[#ececec] via-[#f4f4f5] to-[#ffffff]",
 

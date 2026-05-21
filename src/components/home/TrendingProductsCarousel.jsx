@@ -59,12 +59,16 @@ function TrendingProductCard({ product }) {
     >
       <div className="relative aspect-[3/4.1] overflow-hidden rounded-lg bg-[#dfdcc2]">
         <img
+          loading="lazy"
+          decoding="async"
           src={product.image}
           alt={product.name}
           className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] ease-out group-hover:scale-110 group-hover:opacity-0`}
         />
 
         <img
+          loading="lazy"
+          decoding="async"
           src={product.hoverImage}
           alt=""
           aria-hidden="true"
@@ -199,13 +203,13 @@ export default function TrendingProductsCarousel() {
         aria-hidden="true"
         animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-8%] top-28 h-80 w-80 rounded-full bg-[#cdd5a6]/45 blur-3xl"
+        className="absolute left-[-8%] top-28 h-80 w-80 rounded-full bg-[#cdd5a6]/45 blur-2xl"
       />
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, -16, 0], y: [0, 20, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-[-9%] h-96 w-96 rounded-full bg-[#dbc5a4]/55 blur-3xl"
+        className="absolute bottom-20 right-[-9%] h-96 w-96 rounded-full bg-[#dbc5a4]/55 blur-2xl"
       />
 
       <div className="relative mx-auto max-w-[1620px]">

@@ -23,12 +23,12 @@ export default function NewCollectionBanner() {
           duration: 0.9,
           ease: luxuryEase,
         }}
-        className="mx-auto grid max-w-[1700px] overflow-hidden rounded-[1.8rem] border border-white/40 bg-white/40 shadow-[0_15px_60px_rgba(0,0,0,0.05)] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]"
+        className="mx-auto grid max-w-[1700px] overflow-hidden rounded-[1.8rem] border border-white/40 bg-white/40 shadow-[0_15px_60px_rgba(0,0,0,0.05)] backdrop-blur-md lg:grid-cols-[1.05fr_0.95fr]"
       >
         {/* LEFT CONTENT */}
         <div className="relative flex items-center px-5 py-7 sm:px-8 sm:py-9 lg:px-12 lg:py-10">
           {/* GLOW */}
-          <div className="absolute left-[-10%] top-[-20%] h-52 w-52 rounded-full bg-[#cad39f]/25 blur-3xl" />
+          <div className="absolute left-[-10%] top-[-20%] h-52 w-52 rounded-full bg-[#cad39f]/25 blur-2xl" />
 
           <div className="relative z-10 max-w-2xl">
             {/* LABEL */}
@@ -103,7 +103,9 @@ export default function NewCollectionBanner() {
         {/* RIGHT IMAGE */}
         <div className="relative overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            decoding="async"
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&?w=900&auto=format&fit=crop"
             alt="Luxury fashion collection"
             className="h-[260px] w-full object-cover object-center sm:h-[340px] lg:h-full"
           />
@@ -121,7 +123,7 @@ export default function NewCollectionBanner() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute bottom-4 left-4 rounded-[1.2rem] bg-white/15 p-4 shadow-xl backdrop-blur-xl sm:bottom-6 sm:left-6 sm:p-5"
+            className="absolute bottom-4 left-4 rounded-[1.2rem] bg-white/15 p-4 shadow-xl backdrop-blur-md sm:bottom-6 sm:left-6 sm:p-5"
           >
             <p className="text-[9px] font-extrabold uppercase tracking-[0.22em] text-white/70">
               Editorial Drop

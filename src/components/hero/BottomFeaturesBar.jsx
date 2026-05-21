@@ -6,7 +6,7 @@ function BottomFeaturesBar() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.75, delay: 0.45, ease: "easeOut" }}
-      className="relative z-30 mx-5 mb-5 mt-10 grid max-w-[1620px] overflow-hidden rounded-xl border border-white/55 bg-white/68 shadow-2xl shadow-[#38451f]/15 backdrop-blur-xl sm:mx-8 lg:absolute lg:inset-x-14 lg:bottom-0 lg:mx-auto lg:mb-9 lg:mt-0 lg:grid-cols-4"
+      className="relative z-30 mx-5 mb-5 mt-10 grid max-w-[1620px] overflow-hidden rounded-xl border border-white/55 bg-white/68 shadow-2xl shadow-[#38451f]/15 backdrop-blur-md sm:mx-8 lg:absolute lg:inset-x-14 lg:bottom-0 lg:mx-auto lg:mb-9 lg:mt-0 lg:grid-cols-4"
     >
       {features.map(({ icon: Icon, title, copy }) => (
         <div

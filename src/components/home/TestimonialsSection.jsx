@@ -99,6 +99,8 @@ export default function TestimonialsSection() {
               {/* USER */}
               <div className="relative z-10 flex items-center gap-4">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={testimonial.image}
                   alt={testimonial.name}
                   className={`h-14 w-14 rounded-full object-cover ring-2 ring-white/60 ${testimonial.imagePosition}`}

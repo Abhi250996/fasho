@@ -1,97 +1,115 @@
 import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
+
 import { Link } from "react-router-dom";
 
+const categories = [
+  {
+    title: "Men",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=700&auto=format&fit=crop",
+
+    path: "/men",
+  },
+
+  {
+    title: "Women",
+    image:
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
+
+    path: "/women",
+  },
+
+  {
+    title: "New In",
+    image:
+      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=700&auto=format&fit=crop",
+
+    path: "/new-in",
+  },
+
+  {
+    title: "Collections",
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=700&auto=format&fit=crop",
+
+    path: "/collections",
+  },
+];
+
 function FeaturedCategories() {
-  const categories = [
-    {
-      title: "Men",
-      subtitle: "Modern Essentials",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1400&auto=format&fit=crop",
-      path: "/men",
-    },
-    {
-      title: "Women",
-      subtitle: "Luxury Elegance",
-      image:
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1400&auto=format&fit=crop",
-      path: "/women",
-    },
-    {
-      title: "New In",
-      subtitle: "Latest Arrivals",
-      image:
-        "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1400&auto=format&fit=crop",
-      path: "/new-in",
-    },
-    {
-      title: "Collections",
-      subtitle: "Curated Luxury",
-      image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400&auto=format&fit=crop",
-      path: "/collections",
-    },
-  ];
-
   return (
-    <section
-      id="collections"
-      className="bg-[#ecead7] px-5 py-16 sm:px-8 lg:px-14 lg:py-24"
-    >
-      <div className="mx-auto max-w-[1700px]">
+    <section className="bg-[#ecead7] px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+      <div className="mx-auto max-w-[1400px]">
         {/* HEADER */}
-        <div className="mb-10 flex flex-col gap-4 sm:mb-14 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-6 flex items-end justify-between gap-5">
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-[#6d7d3e]">
-              Curated Collections
-            </p>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-1.5 shadow-sm backdrop-blur-sm">
+              <Sparkles className="size-3 text-[#405821]" />
 
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-stone-950 sm:text-5xl">
-              Shop Collections
+              <span className="text-[8px] font-extrabold uppercase tracking-[0.2em] text-[#405821]">
+                Collections
+              </span>
+            </div>
+
+            <h2 className="mt-4 font-serif text-[clamp(2rem,5vw,4rem)] leading-[0.92] tracking-[-0.05em] text-stone-950">
+              Shop
+              <span className="block text-[#405821]">Categories</span>
             </h2>
           </div>
 
-          <p className="max-w-xl text-sm leading-7 text-stone-600 sm:text-base">
-            Elevated fashion collections crafted for modern luxury wardrobes.
-          </p>
+          <Link
+            to="/collections"
+            className="hidden items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#405821] sm:flex"
+          >
+            View All
+            <ArrowRight className="size-3.5" />
+          </Link>
         </div>
 
-        {/* CATEGORY GRID */}
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {/* SMALL GRID */}
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {categories.map((item) => (
             <motion.div
               key={item.title}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.35 }}
+              whileHover={{
+                y: -3,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
             >
               <Link
                 to={item.path}
-                className="group block overflow-hidden rounded-[1.8rem] border border-white/40 bg-white/40 shadow-xl shadow-black/5 backdrop-blur-md"
+                className="group block overflow-hidden rounded-[1.2rem] border border-white/40 bg-white/40 shadow-md shadow-black/5 backdrop-blur-sm"
               >
                 {/* IMAGE */}
-                <div className="relative overflow-hidden">
+                <div className="relative h-[180px] overflow-hidden sm:h-[240px]">
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={item.image}
                     alt={item.title}
-                    className="h-[320px] w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-105 sm:h-[360px]"
+                    className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
 
                   {/* CONTENT */}
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/75">
-                      {item.subtitle}
-                    </p>
-
-                    <div className="mt-3 flex items-end justify-between gap-4">
-                      <h3 className="text-3xl font-semibold text-white">
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white sm:text-xl">
                         {item.title}
                       </h3>
 
-                      <span className="translate-x-0 text-sm font-bold uppercase tracking-[0.2em] text-white transition duration-300 group-hover:translate-x-1">
+                      <p className="mt-1 text-[9px] font-extrabold uppercase tracking-[0.18em] text-white/70">
                         Explore
-                      </span>
+                      </p>
+                    </div>
+
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition duration-300 group-hover:bg-white group-hover:text-stone-950">
+                      <ArrowRight className="size-3.5" />
                     </div>
                   </div>
                 </div>

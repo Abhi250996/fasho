@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
@@ -8,33 +8,33 @@ import {
   SlidersHorizontal,
   Star,
   X,
-} from 'lucide-react'
-import { productFilterOptions, productsData } from '../data/productsData'
+} from "lucide-react";
+import { productFilterOptions, productsData } from "../data/productsData";
 
-const luxuryEase = [0.22, 1, 0.36, 1]
-const maxPrice = 300
+const luxuryEase = [0.22, 1, 0.36, 1];
+const maxPrice = 300;
 
 const initialFilters = {
-  category: '',
+  category: "",
   price: maxPrice,
-  color: '',
-  size: '',
-  collection: '',
-}
+  color: "",
+  size: "",
+  collection: "",
+};
 
 const sortOptions = [
-  'Featured',
-  'Newest',
-  'Price Low To High',
-  'Price High To Low',
-  'Best Selling',
-]
+  "Featured",
+  "Newest",
+  "Price Low To High",
+  "Price High To Low",
+  "Best Selling",
+];
 
 const badgeStyles = {
-  NEW: 'bg-white/70 text-[#405821]',
-  LIMITED: 'bg-[#405821]/82 text-white',
-  TRENDING: 'bg-[#e9e5c9]/78 text-stone-950',
-}
+  NEW: "bg-white/70 text-[#405821]",
+  LIMITED: "bg-[#405821]/82 text-white",
+  TRENDING: "bg-[#e9e5c9]/78 text-stone-950",
+};
 
 function Rating({ rating }) {
   return (
@@ -43,12 +43,12 @@ function Rating({ rating }) {
         <Star
           key={index}
           className={`size-3.5 stroke-[1.8] ${
-            index < rating ? 'fill-[#6d7d3e]' : 'fill-transparent opacity-35'
+            index < rating ? "fill-[#6d7d3e]" : "fill-transparent opacity-35"
           }`}
         />
       ))}
     </div>
-  )
+  );
 }
 
 function FilterButton({ active, children, onClick }) {
@@ -58,13 +58,13 @@ function FilterButton({ active, children, onClick }) {
       onClick={onClick}
       className={`rounded-full border px-4 py-2.5 text-xs font-extrabold uppercase tracking-[0.16em] shadow-lg backdrop-blur-md transition duration-300 ${
         active
-          ? 'border-[#405821] bg-[#405821] text-white shadow-[#405821]/18'
-          : 'border-[#405821]/16 bg-white/32 text-stone-700 shadow-[#39461e]/5 hover:bg-white/60 hover:text-[#405821]'
+          ? "border-[#405821] bg-[#405821] text-white shadow-[#405821]/18"
+          : "border-[#405821]/16 bg-white/32 text-stone-700 shadow-[#39461e]/5 hover:bg-white/60 hover:text-[#405821]"
       }`}
     >
       {children}
     </button>
-  )
+  );
 }
 
 function FilterPanel({ filters, setFilter, clearFilters }) {
@@ -96,7 +96,10 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
                 key={category}
                 active={filters.category === category}
                 onClick={() =>
-                  setFilter('category', filters.category === category ? '' : category)
+                  setFilter(
+                    "category",
+                    filters.category === category ? "" : category,
+                  )
                 }
               >
                 {category}
@@ -117,7 +120,9 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
               max={maxPrice}
               step="10"
               value={filters.price}
-              onChange={(event) => setFilter('price', Number(event.target.value))}
+              onChange={(event) =>
+                setFilter("price", Number(event.target.value))
+              }
               className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#cdd5a6] [accent-color:#405821]"
             />
           </div>
@@ -130,12 +135,15 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
                 key={color.name}
                 type="button"
                 onClick={() =>
-                  setFilter('color', filters.color === color.name ? '' : color.name)
+                  setFilter(
+                    "color",
+                    filters.color === color.name ? "" : color.name,
+                  )
                 }
                 className={`grid size-10 place-items-center rounded-full border transition duration-300 hover:-translate-y-1 ${
                   filters.color === color.name
-                    ? 'border-[#405821] shadow-lg shadow-[#405821]/20'
-                    : 'border-white/70 shadow-lg shadow-[#39461e]/7'
+                    ? "border-[#405821] shadow-lg shadow-[#405821]/20"
+                    : "border-white/70 shadow-lg shadow-[#39461e]/7"
                 }`}
                 aria-label={`Filter by ${color.name}`}
               >
@@ -154,11 +162,13 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
               <button
                 key={size}
                 type="button"
-                onClick={() => setFilter('size', filters.size === size ? '' : size)}
+                onClick={() =>
+                  setFilter("size", filters.size === size ? "" : size)
+                }
                 className={`rounded-full border py-3 text-xs font-extrabold uppercase tracking-[0.16em] shadow-lg transition duration-300 ${
                   filters.size === size
-                    ? 'border-[#405821] bg-[#405821] text-white shadow-[#405821]/18'
-                    : 'border-[#405821]/16 bg-white/32 text-stone-700 shadow-[#39461e]/5 hover:bg-white/60 hover:text-[#405821]'
+                    ? "border-[#405821] bg-[#405821] text-white shadow-[#405821]/18"
+                    : "border-[#405821]/16 bg-white/32 text-stone-700 shadow-[#39461e]/5 hover:bg-white/60 hover:text-[#405821]"
                 }`}
               >
                 {size}
@@ -175,8 +185,8 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
                 active={filters.collection === collection}
                 onClick={() =>
                   setFilter(
-                    'collection',
-                    filters.collection === collection ? '' : collection,
+                    "collection",
+                    filters.collection === collection ? "" : collection,
                   )
                 }
               >
@@ -187,7 +197,7 @@ function FilterPanel({ filters, setFilter, clearFilters }) {
         </FilterGroup>
       </div>
     </div>
-  )
+  );
 }
 
 function FilterGroup({ title, children }) {
@@ -198,7 +208,7 @@ function FilterGroup({ title, children }) {
       </h3>
       {children}
     </div>
-  )
+  );
 }
 
 function ProductCard({ product }) {
@@ -214,11 +224,15 @@ function ProductCard({ product }) {
     >
       <div className="relative aspect-[3/4.15] overflow-hidden rounded-lg bg-[#dfdcc2]">
         <img
+          loading="lazy"
+          decoding="async"
           src={product.image}
           alt={product.name}
           className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] ease-out group-hover:scale-110 group-hover:opacity-0`}
         />
         <img
+          loading="lazy"
+          decoding="async"
           src={product.hoverImage}
           alt=""
           aria-hidden="true"
@@ -263,33 +277,35 @@ function ProductCard({ product }) {
           <h3 className="max-w-[14rem] text-xl font-semibold leading-snug text-stone-950 sm:text-2xl">
             {product.name}
           </h3>
-          <p className="text-lg font-semibold text-[#405821]">${product.price}</p>
+          <p className="text-lg font-semibold text-[#405821]">
+            ${product.price}
+          </p>
         </div>
       </div>
     </motion.article>
-  )
+  );
 }
 
 export default function ProductListingPage() {
-  const [filters, setFilters] = useState(initialFilters)
-  const [sortBy, setSortBy] = useState(sortOptions[0])
-  const [filtersOpen, setFiltersOpen] = useState(false)
+  const [filters, setFilters] = useState(initialFilters);
+  const [sortBy, setSortBy] = useState(sortOptions[0]);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const setFilter = (key, value) => {
-    setFilters((current) => ({ ...current, [key]: value }))
-  }
+    setFilters((current) => ({ ...current, [key]: value }));
+  };
 
-  const clearFilters = () => setFilters(initialFilters)
+  const clearFilters = () => setFilters(initialFilters);
 
   const filteredProducts = useMemo(() => {
     const filtered = productsData.filter((product) => {
       const matchesCategory =
-        !filters.category || product.category === filters.category
-      const matchesPrice = product.price <= filters.price
-      const matchesColor = !filters.color || product.color === filters.color
-      const matchesSize = !filters.size || product.size.includes(filters.size)
+        !filters.category || product.category === filters.category;
+      const matchesPrice = product.price <= filters.price;
+      const matchesColor = !filters.color || product.color === filters.color;
+      const matchesSize = !filters.size || product.size.includes(filters.size);
       const matchesCollection =
-        !filters.collection || product.collection === filters.collection
+        !filters.collection || product.collection === filters.collection;
 
       return (
         matchesCategory &&
@@ -297,17 +313,17 @@ export default function ProductListingPage() {
         matchesColor &&
         matchesSize &&
         matchesCollection
-      )
-    })
+      );
+    });
 
     return [...filtered].sort((a, b) => {
-      if (sortBy === 'Price Low To High') return a.price - b.price
-      if (sortBy === 'Price High To Low') return b.price - a.price
-      if (sortBy === 'Newest') return b.id - a.id
-      if (sortBy === 'Best Selling') return b.rating - a.rating
-      return a.id - b.id
-    })
-  }, [filters, sortBy])
+      if (sortBy === "Price Low To High") return a.price - b.price;
+      if (sortBy === "Price High To Low") return b.price - a.price;
+      if (sortBy === "Newest") return b.id - a.id;
+      if (sortBy === "Best Selling") return b.rating - a.rating;
+      return a.id - b.id;
+    });
+  }, [filters, sortBy]);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#ecead7] px-5 py-20 text-stone-950 sm:px-8 lg:px-14">
@@ -315,14 +331,14 @@ export default function ProductListingPage() {
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, 18, 0], y: [0, -20, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute right-[-10%] top-24 h-96 w-96 rounded-full bg-[#cdd5a6]/45 blur-3xl"
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-[-10%] top-24 h-96 w-96 rounded-full bg-[#cdd5a6]/45 blur-2xl"
       />
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, -16, 0], y: [0, 22, 0] }}
-        transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-20 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#dbc5a4]/55 blur-3xl"
+        transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-20 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#dbc5a4]/55 blur-2xl"
       />
 
       <div className="relative mx-auto max-w-[1620px]">
@@ -342,8 +358,8 @@ export default function ProductListingPage() {
               <span className="block text-[#3f571f]">Collection</span>
             </h1>
             <p className="max-w-xl text-lg leading-8 text-stone-800 sm:text-xl">
-              A refined edit of timeless fashion, premium textures, and
-              elevated essentials designed for a modern everyday wardrobe.
+              A refined edit of timeless fashion, premium textures, and elevated
+              essentials designed for a modern everyday wardrobe.
             </p>
           </div>
         </motion.header>
@@ -426,9 +442,9 @@ export default function ProductListingPage() {
             className="fixed inset-0 z-50 bg-stone-950/45 backdrop-blur-sm lg:hidden"
           >
             <motion.div
-              initial={{ y: '100%' }}
+              initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              exit={{ y: '100%' }}
+              exit={{ y: "100%" }}
               transition={{ duration: 0.55, ease: luxuryEase }}
               className="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-3xl bg-[#ecead7] p-5 shadow-2xl"
             >
@@ -452,5 +468,5 @@ export default function ProductListingPage() {
         )}
       </AnimatePresence>
     </main>
-  )
+  );
 }

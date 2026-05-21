@@ -114,6 +114,8 @@ export default function SearchOverlay({ isOpen, onClose }) {
                       {/* IMAGE */}
                       <div className="overflow-hidden aspect-[3/3.5] bg-[#ddd7ca]">
                         <img
+                          loading="lazy"
+                          decoding="async"
                           src={product.image}
                           alt={product.name}
                           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"

@@ -1,42 +1,48 @@
-import { motion } from 'framer-motion'
-import { Clock, Mail, MapPin, Music2, Phone } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Clock, Mail, MapPin, Music2, Phone } from "lucide-react";
 
-const luxuryEase = [0.22, 1, 0.36, 1]
+const luxuryEase = [0.22, 1, 0.36, 1];
 
 const navigationLinks = [
-  'Home',
-  'Men',
-  'Women',
-  'Collections',
-  'New Arrivals',
-  'About',
-  'Contact',
-]
+  "Home",
+  "Men",
+  "Women",
+  "Collections",
+  "New Arrivals",
+  "About",
+  "Contact",
+];
 
 const supportLinks = [
-  'FAQs',
-  'Shipping & Returns',
-  'Order Tracking',
-  'Privacy Policy',
-  'Terms & Conditions',
-]
+  "FAQs",
+  "Shipping & Returns",
+  "Order Tracking",
+  "Privacy Policy",
+  "Terms & Conditions",
+];
 
 const contactItems = [
-  { icon: Mail, text: 'studio@fasho.com' },
-  { icon: Phone, text: '+1 (212) 555-0188' },
-  { icon: MapPin, text: '42 Atelier Row, New York' },
-  { icon: Clock, text: 'Mon - Sat, 10AM - 7PM' },
-]
+  { icon: Mail, text: "studio@fasho.com" },
+  { icon: Phone, text: "+1 (212) 555-0188" },
+  { icon: MapPin, text: "42 Atelier Row, New York" },
+  { icon: Clock, text: "Mon - Sat, 10AM - 7PM" },
+];
 
-const paymentMethods = ['Visa', 'Mastercard', 'PayPal', 'Apple Pay', 'Google Pay']
+const paymentMethods = [
+  "Visa",
+  "Mastercard",
+  "PayPal",
+  "Apple Pay",
+  "Google Pay",
+];
 
 const socialLinks = [
-  { icon: InstagramIcon, label: 'Instagram' },
-  { icon: Music2, label: 'TikTok' },
-  { icon: FacebookIcon, label: 'Facebook' },
-]
+  { icon: InstagramIcon, label: "Instagram" },
+  { icon: Music2, label: "TikTok" },
+  { icon: FacebookIcon, label: "Facebook" },
+];
 
-function InstagramIcon({ className = '' }) {
+function InstagramIcon({ className = "" }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -56,21 +62,26 @@ function InstagramIcon({ className = '' }) {
       <circle cx="12" cy="12" r="3.8" stroke="currentColor" strokeWidth="1.8" />
       <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
     </svg>
-  )
+  );
 }
 
-function FacebookIcon({ className = '' }) {
+function FacebookIcon({ className = "" }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
       <path
         d="M14.2 8.3V6.7c0-.8.5-1.1 1.2-1.1h1.7V2.8c-.8-.1-1.6-.2-2.4-.2-2.4 0-4 1.5-4 4v1.7H8v3.1h2.7v8h3.5v-8h2.7l.4-3.1h-3.1Z"
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-function PinterestIcon({ className = '' }) {
+function PinterestIcon({ className = "" }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -83,7 +94,7 @@ function PinterestIcon({ className = '' }) {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
 function FooterLink({ children }) {
@@ -95,7 +106,7 @@ function FooterLink({ children }) {
       {children}
       <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#405821] transition-all duration-300 group-hover:w-full" />
     </a>
-  )
+  );
 }
 
 function SocialButton({ icon: Icon, label }) {
@@ -109,7 +120,7 @@ function SocialButton({ icon: Icon, label }) {
     >
       <Icon className="size-5 stroke-[1.8]" />
     </motion.a>
-  )
+  );
 }
 
 export default function Footer() {
@@ -119,14 +130,14 @@ export default function Footer() {
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cdd5a6]/42 blur-3xl"
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cdd5a6]/42 blur-2xl"
       />
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, -16, 0], y: [0, 20, 0] }}
-        transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-0 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#dbc5a4]/48 blur-3xl"
+        transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#dbc5a4]/48 blur-2xl"
       />
 
       <motion.div
@@ -188,7 +199,10 @@ export default function Footer() {
             </h3>
             <div className="mt-6 flex flex-col gap-5">
               {contactItems.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-4 text-stone-700">
+                <div
+                  key={text}
+                  className="flex items-start gap-4 text-stone-700"
+                >
                   <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[#728341] text-white shadow-lg shadow-[#526632]/16">
                     <Icon className="size-4 stroke-[1.8]" />
                   </span>
@@ -229,5 +243,5 @@ export default function Footer() {
         </div>
       </motion.div>
     </footer>
-  )
+  );
 }

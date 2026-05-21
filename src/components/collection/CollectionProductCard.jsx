@@ -20,6 +20,8 @@ function CollectionProductCard({ product, accent }) {
         {/* IMAGE */}
         <div className="relative overflow-hidden bg-[#e7e2d4]">
           <img
+            loading="lazy"
+            decoding="async"
             src={product.image}
             alt={product.name}
             className="h-[220px] w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-105 sm:h-[300px] xl:h-[340px]"

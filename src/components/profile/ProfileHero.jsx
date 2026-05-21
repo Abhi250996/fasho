@@ -19,19 +19,21 @@ export default function ProfileHero() {
           duration: 0.8,
           ease: luxuryEase,
         }}
-        className="mx-auto max-w-[1700px] overflow-hidden rounded-[2rem] border border-white/40 bg-white/40 shadow-[0_20px_70px_rgba(0,0,0,0.06)] backdrop-blur-xl"
+        className="mx-auto max-w-[1700px] overflow-hidden rounded-[2rem] border border-white/40 bg-white/40 shadow-[0_20px_70px_rgba(0,0,0,0.06)] backdrop-blur-md"
       >
         <div className="grid lg:grid-cols-[1fr_320px]">
           {/* LEFT */}
           <div className="relative px-6 py-8 sm:px-10 lg:px-14 lg:py-12">
             {/* GLOW */}
-            <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-[#cad39f]/25 blur-3xl" />
+            <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-[#cad39f]/25 blur-2xl" />
 
             <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-5">
                 {/* AVATAR */}
                 <div className="relative">
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
                     alt="Profile"
                     className="h-24 w-24 rounded-full object-cover ring-4 ring-white/60 sm:h-28 sm:w-28"

@@ -109,12 +109,16 @@ function RecommendedCard({ product }) {
     >
       <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[#dfdcc2]">
         <img
+          loading="lazy"
+          decoding="async"
           src={product.image}
           alt={product.name}
           className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] group-hover:scale-110 group-hover:opacity-0`}
         />
 
         <img
+          loading="lazy"
+          decoding="async"
           src={product.hoverImage}
           alt=""
           aria-hidden="true"
@@ -236,13 +240,13 @@ export default function ProductDetailsPage() {
         aria-hidden="true"
         animate={{ x: [0, 18, 0], y: [0, -20, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[-10%] top-24 h-96 w-96 rounded-full bg-[#cdd5a6]/45 blur-3xl"
+        className="absolute right-[-10%] top-24 h-96 w-96 rounded-full bg-[#cdd5a6]/45 blur-2xl"
       />
       <motion.div
         aria-hidden="true"
         animate={{ x: [0, -16, 0], y: [0, 22, 0] }}
         transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-40 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#dbc5a4]/55 blur-3xl"
+        className="absolute bottom-40 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#dbc5a4]/55 blur-2xl"
       />
 
       <div className="relative mx-auto max-w-[1620px]">
@@ -267,6 +271,8 @@ export default function ProductDetailsPage() {
                     }`}
                   >
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={image.src}
                       alt={image.alt}
                       className={`h-full w-full object-cover ${image.position}`}
@@ -305,6 +311,8 @@ export default function ProductDetailsPage() {
                   <SwiperSlide key={image.alt}>
                     <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-white/45 bg-white/30 shadow-2xl shadow-[#39461e]/12">
                       <img
+                        loading="lazy"
+                        decoding="async"
                         src={image.src}
                         alt={image.alt}
                         className={`h-full w-full object-cover ${image.position}`}
@@ -516,6 +524,8 @@ export default function ProductDetailsPage() {
                 <div className="flex items-center gap-5">
                   <div className="relative">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={review.image}
                       alt={review.name}
                       className={`size-16 rounded-full border border-white/70 object-cover ${review.imagePosition} ring-4 ring-white/35`}

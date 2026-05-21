@@ -1,19 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
+
 import { Routes, Route } from "react-router-dom";
 
 import LuxuryHero from "./components/LuxuryHero";
 import CartDrawer from "./components/cart/CartDrawer";
 
-import CheckoutPage from "./pages/CheckoutPage";
-import OrderSuccessPage from "./pages/OrderSuccessPage";
-
 import { createPageTransition } from "./lib/animations";
+
 import { useRevealAnimation } from "./hooks/useRevealAnimation";
-import CartPage from "./pages/CartPage";
-import CollectionPage from "./pages/CollectionPage";
-import LuxuryAboutSection from "./pages/LuxuryAboutSection";
-import ProfilePage from "./pages/ProfilePage";
+
 import ScrollToTop from "./common/ScrollToTop";
+
+/* LAZY LOADED PAGES */
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+
+const OrderSuccessPage = lazy(() => import("./pages/OrderSuccessPage"));
+
+const CartPage = lazy(() => import("./pages/CartPage"));
+
+const CollectionPage = lazy(() => import("./pages/CollectionPage"));
+
+const LuxuryAboutSection = lazy(() => import("./pages/LuxuryAboutSection"));
+
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 function App() {
   const appRef = useRef(null);
@@ -43,24 +52,44 @@ function App() {
 
   return (
     <div ref={appRef} className="min-h-screen overflow-x-hidden bg-[#f5f1e8]">
-      {" "}
+      {/* CART */}
       <CartDrawer />
+
       <div ref={revealRef}>
+        {/* AUTO SCROLL TOP */}
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<LuxuryHero />} />
-          <Route path="/about" element={<LuxuryAboutSection />} />
 
-          <Route path="/checkout" element={<CheckoutPage />} />
+        {/* ROUTES */}
+        <Suspense
+          fallback={
+            <div className="flex min-h-screen items-center justify-center bg-[#f5f1e8]">
+              <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#405821] border-t-transparent" />
+            </div>
+          }
+        >
+          <Routes>
+            {/* HOME */}
+            <Route path="/" element={<LuxuryHero />} />
 
-          <Route path="/cart" element={<CartPage />} />
+            {/* ABOUT */}
+            <Route path="/about" element={<LuxuryAboutSection />} />
 
-          <Route path="/order-success" element={<OrderSuccessPage />} />
-          <Route path="/account" element={<ProfilePage />} />
+            {/* CHECKOUT */}
+            <Route path="/checkout" element={<CheckoutPage />} />
 
-          {/* DYNAMIC COLLECTION ROUTES */}
-          <Route path="/:type" element={<CollectionPage />} />
-        </Routes>
+            {/* CART */}
+            <Route path="/cart" element={<CartPage />} />
+
+            {/* SUCCESS */}
+            <Route path="/order-success" element={<OrderSuccessPage />} />
+
+            {/* ACCOUNT */}
+            <Route path="/account" element={<ProfilePage />} />
+
+            {/* COLLECTIONS */}
+            <Route path="/:type" element={<CollectionPage />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );

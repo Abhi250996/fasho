@@ -30,7 +30,9 @@ export default function AboutBrandSection() {
           {/* MAIN IMAGE */}
           <div className="overflow-hidden rounded-[2rem]">
             <img
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop"
+              loading="lazy"
+              decoding="async"
+              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&?w=900&auto=format&fit=crop"
               alt="Luxury fashion"
               className="h-[360px] w-full object-cover transition duration-[1200ms] ease-out hover:scale-105 sm:h-[520px] lg:h-[720px]"
             />

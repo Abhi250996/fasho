@@ -1,46 +1,89 @@
-import heroBg from '../assets/hero-bg.png'
-
 export const socialGalleryData = [
   {
     id: 1,
-    username: '@amara.styles',
-    likes: '12.8K',
-    image: heroBg,
-    imagePosition: 'object-[62%_center]',
+    username: "@fasho.studio",
+    likes: "18.4K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=900&auto=format&fit=crop",
+
+    imagePosition: "object-center",
   },
+
   {
     id: 2,
-    username: '@fasho.studio',
-    likes: '18.4K',
-    image: heroBg,
-    imagePosition: 'object-[72%_center]',
+    username: "@urban.edit",
+    likes: "9.2K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
   },
+
   {
     id: 3,
-    username: '@modern.uniform',
-    likes: '9.7K',
-    image: heroBg,
-    imagePosition: 'object-[48%_center]',
+    username: "@minimal.daily",
+    likes: "12.8K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+    imagePosition: "object-center",
   },
+
   {
     id: 4,
-    username: '@quietatelier',
-    likes: '15.2K',
-    image: heroBg,
-    imagePosition: 'object-[68%_center]',
+    username: "@modern.fit",
+    likes: "7.9K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
   },
+
   {
     id: 5,
-    username: '@resort.layers',
-    likes: '7.9K',
-    image: heroBg,
-    imagePosition: 'object-[54%_center]',
+    username: "@street.lux",
+    likes: "15.1K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
   },
+
   {
     id: 6,
-    username: '@daily.fasho',
-    likes: '21.6K',
-    image: heroBg,
-    imagePosition: 'object-[70%_center]',
+    username: "@fasho.editorial",
+    likes: "11.7K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
   },
-]
+
+  {
+    id: 7,
+    username: "@soft.neutrals",
+    likes: "6.3K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
+  },
+
+  {
+    id: 8,
+    username: "@elevated.daily",
+    likes: "13.4K Likes",
+
+    image:
+      "https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=700&auto=format&fit=crop",
+
+    imagePosition: "object-center",
+  },
+];

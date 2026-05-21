@@ -15,7 +15,7 @@ export default function CollectionShopSection({
     <section className="px-5 pb-20 pt-10 sm:px-8 lg:px-14 lg:pb-24 lg:pt-14">
       <div className="mx-auto grid max-w-[1700px] gap-8 lg:grid-cols-[300px_1fr]">
         {/* SIDEBAR */}
-        <aside className="sticky top-28 hidden h-fit rounded-[2rem] border border-white/45 bg-white/50 p-7 shadow-2xl shadow-black/5 backdrop-blur-xl lg:block">
+        <aside className="sticky top-28 hidden h-fit rounded-[2rem] border border-white/45 bg-white/50 p-7 shadow-2xl shadow-black/5 backdrop-blur-md lg:block">
           {/* HEADER */}
           <div className="flex items-center justify-between">
             <div>
@@ -144,7 +144,7 @@ export default function CollectionShopSection({
         {/* PRODUCTS AREA */}
         <div>
           {/* TOOLBAR */}
-          <div className="mb-8 flex flex-col gap-5 rounded-[1.8rem] border border-white/45 bg-white/50 p-5 shadow-xl shadow-black/5 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+          <div className="mb-8 flex flex-col gap-5 rounded-[1.8rem] border border-white/45 bg-white/50 p-5 shadow-xl shadow-black/5 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p
                 className="text-[10px] font-extrabold uppercase tracking-[0.28em]"

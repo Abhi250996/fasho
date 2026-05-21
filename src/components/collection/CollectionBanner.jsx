@@ -12,7 +12,7 @@ export default function CollectionBanner({
     <section className="relative overflow-hidden px-5 pt-24 sm:px-8 lg:px-14 lg:pt-28">
       {/* AMBIENT GLOW */}
       <div
-        className={`pointer-events-none absolute left-0 top-0 h-[14rem] w-[14rem] rounded-full blur-3xl ${glow}`}
+        className={`pointer-events-none absolute left-0 top-0 h-[14rem] w-[14rem] rounded-full blur-2xl ${glow}`}
       />
 
       <div
@@ -60,6 +60,8 @@ export default function CollectionBanner({
           {/* RIGHT IMAGE */}
           <div className="relative hidden h-full lg:block">
             <img
+              loading="lazy"
+              decoding="async"
               src={image}
               alt={headingPrimary}
               className="absolute inset-0 h-full w-full object-cover"

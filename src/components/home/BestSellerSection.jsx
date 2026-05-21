@@ -20,8 +20,8 @@ const containerVariants = {
     opacity: 1,
 
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.08,
+      staggerChildren: 0.05,
+      delayChildren: 0.06,
     },
   },
 };
@@ -29,7 +29,7 @@ const containerVariants = {
 const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 20,
+    y: 16,
   },
 
   visible: {
@@ -42,7 +42,7 @@ const cardVariants = {
 
 function ProductRating({ rating }) {
   return (
-    <div className="flex items-center gap-1 text-[#6d7d3e]">
+    <div className="flex items-center gap-0.5 text-[#6d7d3e]">
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
@@ -63,30 +63,38 @@ function ProductCard({ product }) {
   return (
     <motion.article
       variants={cardVariants}
-      whileHover={{ y: -4 }}
-      className="group relative rounded-[1.1rem] border border-white/40 bg-white/35 p-2 shadow-lg shadow-black/5 backdrop-blur-sm transition duration-300 hover:shadow-black/10"
+      whileHover={{
+        y: -4,
+      }}
+      className="group relative rounded-[1rem] border border-white/35 bg-white/40 p-2.5 shadow-md shadow-black/5 backdrop-blur-sm transition duration-300 hover:shadow-black/10 sm:p-3"
     >
       {/* IMAGE */}
-      <div className="relative aspect-[3/3.45] overflow-hidden rounded-[0.9rem] bg-[#dfdcc2]">
+      <div className="relative aspect-[3/3.1] overflow-hidden rounded-[0.9rem] bg-[#dfdcc2] sm:aspect-[3/3.3]">
+        {/* MAIN IMAGE */}
         <img
+          loading="lazy"
+          decoding="async"
           src={product.image}
           alt={product.name}
-          className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-0`}
+          className={`absolute inset-0 h-full w-full object-cover ${product.imagePosition} transition duration-700 ease-out group-hover:scale-[1.03] group-hover:opacity-0`}
         />
 
+        {/* HOVER IMAGE */}
         <img
+          loading="lazy"
+          decoding="async"
           src={product.hoverImage}
           alt=""
           aria-hidden="true"
-          className={`absolute inset-0 h-full w-full scale-105 object-cover ${product.hoverPosition} opacity-0 transition duration-[1100ms] ease-out group-hover:scale-105 group-hover:opacity-100`}
+          className={`absolute inset-0 h-full w-full object-cover ${product.hoverPosition} opacity-0 transition duration-700 ease-out group-hover:scale-[1.03] group-hover:opacity-100`}
         />
 
         {/* OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
         {/* NEW BADGE */}
         {product.isNew && (
-          <span className="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[0.16em] text-[#405821] shadow-md backdrop-blur-md sm:text-[9px]">
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-white/80 px-2.5 py-1 text-[7px] font-extrabold uppercase tracking-[0.16em] text-[#405821] shadow-sm backdrop-blur-sm sm:text-[8px]">
             New
           </span>
         )}
@@ -94,9 +102,10 @@ function ProductCard({ product }) {
         {/* WISHLIST */}
         <button
           type="button"
-          className="absolute right-3 top-3 grid size-8 place-items-center rounded-full bg-white/70 text-stone-950 opacity-0 shadow-md backdrop-blur-md transition duration-300 hover:bg-white hover:text-[#405821] group-hover:opacity-100 sm:size-9"
+          aria-label={`Add ${product.name} to wishlist`}
+          className="absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/75 text-stone-950 opacity-0 shadow-sm backdrop-blur-sm transition duration-300 hover:bg-white hover:text-[#405821] group-hover:opacity-100"
         >
-          <Heart className="size-4 stroke-[1.8]" />
+          <Heart className="size-3.5 stroke-[1.8]" />
         </button>
 
         {/* QUICK ADD */}
@@ -119,18 +128,20 @@ function ProductCard({ product }) {
               setAdded(false);
             }, 1800);
           }}
-          whileTap={{ scale: 0.96 }}
-          className={`absolute inset-x-3 bottom-3 flex items-center justify-center rounded-full px-4 py-3 text-[9px] font-extrabold uppercase tracking-[0.16em] text-white shadow-lg transition duration-300 ${
+          whileTap={{
+            scale: 0.96,
+          }}
+          className={`absolute inset-x-2.5 bottom-2.5 flex items-center justify-center rounded-full px-3 py-2.5 text-[8px] font-extrabold uppercase tracking-[0.14em] text-white shadow-md transition duration-300 sm:px-4 sm:py-3 sm:text-[9px] ${
             added ? "bg-[#6d8a3c]" : "bg-[#405821] hover:bg-[#314417]"
           }`}
         >
           <motion.div
             initial={false}
             animate={{
-              scale: added ? [1, 1.14, 1] : 1,
+              scale: added ? [1, 1.12, 1] : 1,
             }}
             transition={{
-              duration: 0.4,
+              duration: 0.35,
             }}
             className="flex items-center gap-2"
           >
@@ -153,7 +164,7 @@ function ProductCard({ product }) {
       <div className="px-1 pb-1 pt-3">
         {/* CATEGORY + RATING */}
         <div className="mb-2 flex items-center justify-between gap-2">
-          <p className="text-[8px] font-extrabold uppercase tracking-[0.18em] text-[#6d7d3e] sm:text-[9px]">
+          <p className="text-[7px] font-extrabold uppercase tracking-[0.18em] text-[#6d7d3e] sm:text-[8px]">
             {product.category}
           </p>
 
@@ -161,12 +172,12 @@ function ProductCard({ product }) {
         </div>
 
         {/* TITLE + PRICE */}
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="line-clamp-2 max-w-[9rem] text-sm font-semibold leading-snug text-stone-950 sm:max-w-[12rem] sm:text-[15px] lg:text-base">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="line-clamp-2 max-w-[8rem] text-[13px] font-semibold leading-snug text-stone-950 sm:max-w-[11rem] sm:text-[15px] lg:text-base">
             {product.name}
           </h3>
 
-          <p className="shrink-0 text-sm font-semibold text-[#405821]">
+          <p className="shrink-0 text-[13px] font-semibold text-[#405821] sm:text-sm">
             {product.price}
           </p>
         </div>
@@ -182,15 +193,15 @@ export default function BestSellerSection() {
       <motion.div
         aria-hidden="true"
         animate={{
-          y: [0, -14, 0],
-          x: [0, 10, 0],
+          y: [0, -10, 0],
+          x: [0, 8, 0],
         }}
         transition={{
-          duration: 13,
+          duration: 14,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-[-10%] top-16 h-56 w-56 rounded-full bg-[#cdd5a6]/30 blur-3xl"
+        className="absolute right-[-10%] top-16 h-52 w-52 rounded-full bg-[#cdd5a6]/25 blur-xl"
       />
 
       <div className="relative mx-auto max-w-[1700px]">
@@ -212,13 +223,13 @@ export default function BestSellerSection() {
           className="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#6d7d3e] sm:text-xs">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[#6d7d3e] sm:text-xs">
               Best Sellers
             </p>
 
             <div className="mt-3 h-px w-14 bg-[#526632]" />
 
-            <h2 className="mt-4 max-w-4xl font-serif text-[clamp(2.2rem,5vw,4.8rem)] leading-[0.92] tracking-[-0.04em] text-stone-950">
+            <h2 className="mt-4 max-w-4xl font-serif text-[clamp(2rem,5vw,4.5rem)] leading-[0.92] tracking-[-0.04em] text-stone-950">
               Designed To
               <span className="block text-[#3f571f]">Stand Out</span>
             </h2>
@@ -234,10 +245,10 @@ export default function BestSellerSection() {
           >
             <Link
               to="/collections"
-              className="inline-flex w-fit items-center gap-3 rounded-full border border-[#405821]/10 bg-white/50 px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#405821] shadow-md shadow-black/5 backdrop-blur-md transition duration-300 hover:bg-[#405821] hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-[#405821]/10 bg-white/55 px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#405821] shadow-sm backdrop-blur-sm transition duration-300 hover:bg-[#405821] hover:text-white sm:text-[10px]"
             >
               View All
-              <ArrowRight className="size-4 stroke-[1.8]" />
+              <ArrowRight className="size-3.5 stroke-[1.8]" />
             </Link>
           </motion.div>
         </motion.div>
@@ -252,7 +263,7 @@ export default function BestSellerSection() {
             once: true,
             amount: 0.12,
           }}
-          className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
+          className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
         >
           {bestSellerProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

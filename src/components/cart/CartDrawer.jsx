@@ -31,8 +31,8 @@ function CartDrawer() {
           className="fixed right-5 top-1/2 z-50 flex h-[92vh] w-full max-w-md -translate-y-1/2 flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#f5f1e8] shadow-[0_30px_80px_rgba(0,0,0,0.18)]"
         >
           {/* Ambient Glow */}
-          <div className="pointer-events-none absolute -right-16 top-[-80px] h-64 w-64 rounded-full bg-[#556b2f]/10 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-[-80px] left-[-80px] h-56 w-56 rounded-full bg-[#d7ccb8]/30 blur-3xl" />
+          <div className="pointer-events-none absolute -right-16 top-[-80px] h-64 w-64 rounded-full bg-[#556b2f]/10 blur-2xl" />
+          <div className="pointer-events-none absolute bottom-[-80px] left-[-80px] h-56 w-56 rounded-full bg-[#d7ccb8]/30 blur-2xl" />
 
           {/* Header */}
           <div className="relative flex items-center justify-between border-b border-[#2d3b36]/10 px-6 py-6">
@@ -80,12 +80,14 @@ function CartDrawer() {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="group rounded-3xl border border-[#2d3b36]/8 bg-white/60 p-4 backdrop-blur-xl"
+                    className="group rounded-3xl border border-[#2d3b36]/8 bg-white/60 p-4 backdrop-blur-md"
                   >
                     <div className="flex gap-4">
                       {/* Image */}
                       <div className="h-28 w-24 overflow-hidden rounded-2xl bg-[#ebe6da]">
                         <img
+                          loading="lazy"
+                          decoding="async"
                           src={item.image}
                           alt={item.name}
                           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -151,7 +153,7 @@ function CartDrawer() {
 
           {/* Footer */}
           {cartItems.length > 0 && (
-            <div className="border-t border-[#2d3b36]/10 bg-white/70 px-6 py-6 backdrop-blur-xl">
+            <div className="border-t border-[#2d3b36]/10 bg-white/70 px-6 py-6 backdrop-blur-md">
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#6d7d3e]">

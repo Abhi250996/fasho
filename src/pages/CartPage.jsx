@@ -20,8 +20,8 @@ function CartPage() {
     <main className="min-h-screen bg-[#ecead7] px-5 pb-20 pt-32 text-stone-950 sm:px-8 lg:px-14">
       <Navbar />
       {/* Ambient Background */}
-      <div className="pointer-events-none fixed left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cfd7a8]/35 blur-3xl" />
-      <div className="pointer-events-none fixed bottom-[-10%] right-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#d8c9ae]/35 blur-3xl" />
+      <div className="pointer-events-none fixed left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cfd7a8]/35 blur-2xl" />
+      <div className="pointer-events-none fixed bottom-[-10%] right-[-10%] h-[30rem] w-[30rem] rounded-full bg-[#d8c9ae]/35 blur-2xl" />
 
       <div className="relative mx-auto max-w-[1680px]">
         {/* Header */}
@@ -54,7 +54,7 @@ function CartPage() {
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex min-h-[60vh] flex-col items-center justify-center rounded-[2rem] border border-white/50 bg-white/45 px-8 py-20 text-center shadow-2xl shadow-[#39461e]/10 backdrop-blur-xl"
+            className="flex min-h-[60vh] flex-col items-center justify-center rounded-[2rem] border border-white/50 bg-white/45 px-8 py-20 text-center shadow-2xl shadow-[#39461e]/10 backdrop-blur-md"
           >
             <div className="mb-8 flex h-28 w-28 items-center justify-center rounded-full bg-[#405821]/10">
               <ShoppingBag className="size-12 text-[#405821]" />
@@ -86,12 +86,14 @@ function CartPage() {
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.06, duration: 0.6 }}
-                  className="group overflow-hidden rounded-[2rem] border border-white/50 bg-white/45 p-5 shadow-2xl shadow-[#39461e]/10 backdrop-blur-xl"
+                  className="group overflow-hidden rounded-[2rem] border border-white/50 bg-white/45 p-5 shadow-2xl shadow-[#39461e]/10 backdrop-blur-md"
                 >
                   <div className="flex flex-col gap-6 sm:flex-row">
                     {/* Product Image */}
                     <div className="relative h-[240px] w-full overflow-hidden rounded-[1.5rem] bg-[#dfdcc2] sm:h-44 sm:w-36">
                       <img
+                        loading="lazy"
+                        decoding="async"
                         src={item.image}
                         alt={item.name}
                         className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
@@ -175,9 +177,9 @@ function CartPage() {
               initial={{ opacity: 0, x: 26 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
-              className="sticky top-28 h-fit overflow-hidden rounded-[2rem] border border-white/50 bg-white/45 p-8 shadow-2xl shadow-[#39461e]/10 backdrop-blur-xl"
+              className="sticky top-28 h-fit overflow-hidden rounded-[2rem] border border-white/50 bg-white/45 p-8 shadow-2xl shadow-[#39461e]/10 backdrop-blur-md"
             >
-              <div className="pointer-events-none absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full bg-[#cfd7a8]/35 blur-3xl" />
+              <div className="pointer-events-none absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full bg-[#cfd7a8]/35 blur-2xl" />
 
               <div className="relative">
                 <p className="text-sm font-extrabold uppercase tracking-[0.34em] text-[#6d7d3e]">

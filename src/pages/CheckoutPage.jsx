@@ -122,7 +122,7 @@ const CheckoutPage = () => {
           )}
           <div className="grid gap-8 lg:grid-cols-[1fr_420px]">
             <div className="space-y-8">
-              <div className="rounded-3xl border border-white/40 bg-white/60 p-8 backdrop-blur-xl">
+              <div className="rounded-3xl border border-white/40 bg-white/60 p-8 backdrop-blur-md">
                 <h2 className="mb-6 text-2xl font-semibold text-[#2d3b36]">
                   Shipping Details
                 </h2>
@@ -190,7 +190,7 @@ const CheckoutPage = () => {
               />
             </div>
 
-            <div className="h-fit rounded-3xl border border-white/40 bg-white/60 p-8 backdrop-blur-xl">
+            <div className="h-fit rounded-3xl border border-white/40 bg-white/60 p-8 backdrop-blur-md">
               <h2 className="mb-6 text-2xl font-semibold text-[#2d3b36]">
                 Order Summary
               </h2>
@@ -199,6 +199,8 @@ const CheckoutPage = () => {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex items-center gap-4">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={item.image}
                       alt={item.name}
                       className="h-20 w-16 rounded-xl object-cover"

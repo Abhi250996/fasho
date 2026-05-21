@@ -11,7 +11,7 @@ export default function LuxuryAboutSection() {
       {/* HERO / ABOUT SECTION */}
       <section className="relative overflow-hidden px-5 pb-24 pt-32 sm:px-8 lg:px-14 lg:pb-32 lg:pt-40">
         {/* AMBIENT GLOW */}
-        <div className="pointer-events-none absolute left-[-10%] top-0 h-[26rem] w-[26rem] rounded-full bg-[#cad39f]/20 blur-3xl" />
+        <div className="pointer-events-none absolute left-[-10%] top-0 h-[26rem] w-[26rem] rounded-full bg-[#cad39f]/20 blur-2xl" />
 
         <div className="mx-auto grid max-w-[1700px] gap-14 lg:grid-cols-[0.95fr_1fr] lg:items-center">
           {/* LEFT IMAGE STACK */}
@@ -25,7 +25,9 @@ export default function LuxuryAboutSection() {
               className="overflow-hidden rounded-[2.5rem] shadow-2xl shadow-black/10"
             >
               <img
-                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop"
+                loading="lazy"
+                decoding="async"
+                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&?w=900&auto=format&fit=crop"
                 alt="Luxury fashion"
                 className="h-[420px] w-full object-cover sm:h-[520px] lg:h-[680px]"
               />
@@ -37,7 +39,7 @@ export default function LuxuryAboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.9 }}
-              className="absolute -bottom-8 right-4 max-w-[260px] rounded-[1.8rem] border border-white/40 bg-white/80 p-6 shadow-2xl shadow-black/10 backdrop-blur-xl sm:right-8 sm:max-w-[300px]"
+              className="absolute -bottom-8 right-4 max-w-[260px] rounded-[1.8rem] border border-white/40 bg-white/80 p-6 shadow-2xl shadow-black/10 backdrop-blur-md sm:right-8 sm:max-w-[300px]"
             >
               <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[#6d7d3e]">
                 Since 2025

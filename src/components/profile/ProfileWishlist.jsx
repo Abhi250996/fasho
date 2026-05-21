@@ -46,6 +46,8 @@ export default function ProfileWishlist() {
             >
               <div className="aspect-[4/4.5] overflow-hidden">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={item.image}
                   alt={item.name}
                   className="h-full w-full object-cover"

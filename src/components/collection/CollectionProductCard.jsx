@@ -11,12 +11,12 @@ function CollectionProductCard({ product, accent }) {
 
   return (
     <motion.article
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.45 }}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.35 }}
       className="group relative"
     >
       {/* CARD */}
-      <div className="overflow-hidden rounded-[1.7rem] border border-white/45 bg-white/45 shadow-xl shadow-black/5 backdrop-blur-md transition duration-500 hover:shadow-black/10">
+      <div className="overflow-hidden rounded-2xl border border-white/45 bg-white/50 shadow-lg shadow-black/5 transition duration-300 hover:shadow-black/10 sm:rounded-[1.7rem]">
         {/* IMAGE */}
         <div className="relative overflow-hidden bg-[#e7e2d4]">
           <img
@@ -24,16 +24,17 @@ function CollectionProductCard({ product, accent }) {
             decoding="async"
             src={product.image}
             alt={product.name}
-            className="h-[220px] w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-105 sm:h-[300px] xl:h-[340px]"
+            className="h-[170px] w-full object-cover transition duration-700 ease-out group-hover:scale-105 sm:h-[240px] lg:h-[300px] xl:h-[340px]"
           />
 
           {/* OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent opacity-100 transition duration-300 sm:opacity-0 sm:group-hover:opacity-100" />
 
           {/* TOP ACTIONS */}
-          <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
+          <div className="absolute left-3 right-3 top-3 flex items-center justify-between sm:left-4 sm:right-4 sm:top-4">
+            {/* CATEGORY */}
             <span
-              className="rounded-full border border-white/30 bg-white/70 px-3 py-2 text-[9px] font-extrabold uppercase tracking-[0.24em] shadow-lg backdrop-blur-md sm:text-[10px]"
+              className="rounded-full border border-white/30 bg-white/85 px-2.5 py-1.5 text-[8px] font-bold uppercase tracking-[0.12em] shadow-md sm:px-3 sm:py-2 sm:text-[10px] sm:tracking-[0.2em]"
               style={{
                 color: accent,
               }}
@@ -41,18 +42,15 @@ function CollectionProductCard({ product, accent }) {
               {product.category}
             </span>
 
-            <button
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white backdrop-blur-md transition duration-300 hover:bg-white"
-              style={{
-                color: "white",
-              }}
-            >
+            {/* WISHLIST */}
+            <button className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white transition duration-300 hover:bg-white hover:text-stone-950 sm:h-10 sm:w-10">
               <Heart className="size-4" />
             </button>
           </div>
 
           {/* QUICK ACTIONS */}
-          <div className="absolute inset-x-4 bottom-4 flex translate-y-4 items-center gap-3 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 opacity-100 transition duration-300 sm:inset-x-4 sm:bottom-4 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
+            {/* ADD TO CART */}
             <motion.button
               whileTap={{ scale: 0.96 }}
               onClick={(e) => {
@@ -72,26 +70,26 @@ function CollectionProductCard({ product, accent }) {
                   setAdded(false);
                 }, 1800);
               }}
-              className={`flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.22em] text-white shadow-2xl transition duration-300 ${
+              className={`flex flex-1 items-center justify-center gap-1 rounded-full px-3 py-2.5 text-[9px] font-bold uppercase tracking-[0.08em] text-white shadow-lg transition duration-300 sm:gap-2 sm:px-4 sm:py-3 sm:text-[10px] sm:tracking-[0.18em] ${
                 added ? "bg-[#6d8a3c]" : ""
               }`}
               style={{
                 backgroundColor: added ? "#6d8a3c" : accent,
 
                 boxShadow: added
-                  ? "0 10px 30px rgba(109,138,60,0.35)"
-                  : `0 10px 30px ${accent}30`,
+                  ? "0 10px 30px rgba(109,138,60,0.25)"
+                  : `0 10px 30px ${accent}25`,
               }}
             >
               <motion.div
                 initial={false}
                 animate={{
-                  scale: added ? [1, 1.18, 1] : 1,
+                  scale: added ? [1, 1.12, 1] : 1,
                 }}
                 transition={{
-                  duration: 0.45,
+                  duration: 0.35,
                 }}
-                className="flex items-center gap-2"
+                className="flex items-center gap-1 sm:gap-2"
               >
                 {added ? (
                   <>
@@ -101,27 +99,23 @@ function CollectionProductCard({ product, accent }) {
                 ) : (
                   <>
                     <ShoppingBag className="size-4" />
-                    Quick Add
+                    Add
                   </>
                 )}
               </motion.div>
             </motion.button>
 
-            <button
-              className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/20 bg-white/15 text-white backdrop-blur-md transition duration-300 hover:bg-white"
-              style={{
-                color: "white",
-              }}
-            >
+            {/* QUICK VIEW */}
+            <button className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white transition duration-300 hover:bg-white hover:text-stone-950 sm:h-[46px] sm:w-[46px]">
               <Eye className="size-4" />
             </button>
           </div>
         </div>
 
         {/* CONTENT */}
-        <div className="p-4 sm:p-5">
+        <div className="p-3 sm:p-5">
           {/* RATING */}
-          <div className="mb-3 flex items-center gap-1">
+          <div className="mb-2 flex items-center gap-1 sm:mb-3">
             {[...Array(5)].map((_, index) => (
               <Star
                 key={index}
@@ -133,23 +127,28 @@ function CollectionProductCard({ product, accent }) {
               />
             ))}
 
-            <span className="ml-2 text-xs text-stone-500">(124)</span>
+            <span className="ml-1 text-[11px] text-stone-500 sm:ml-2 sm:text-xs">
+              (124)
+            </span>
           </div>
 
           {/* TITLE + PRICE */}
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="line-clamp-2 text-base font-semibold leading-snug text-stone-950 transition duration-300 sm:text-lg">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              {/* TITLE */}
+              <h3 className="line-clamp-2 text-sm font-semibold leading-6 text-stone-950 transition duration-300 sm:text-base lg:text-lg">
                 {product.name}
               </h3>
 
-              <p className="mt-2 text-xs font-medium uppercase tracking-[0.18em] text-stone-500">
+              {/* SUBTITLE */}
+              <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.08em] text-stone-500 sm:mt-2 sm:text-xs sm:tracking-[0.18em]">
                 Premium Collection
               </p>
             </div>
 
+            {/* PRICE */}
             <p
-              className="shrink-0 text-sm font-bold sm:text-base"
+              className="shrink-0 text-xs font-bold sm:text-sm lg:text-base"
               style={{
                 color: accent,
               }}

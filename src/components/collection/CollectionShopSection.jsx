@@ -12,21 +12,21 @@ export default function CollectionShopSection({
   accent,
 }) {
   return (
-    <section className="px-5 pb-20 pt-10 sm:px-8 lg:px-14 lg:pb-24 lg:pt-14">
-      <div className="mx-auto grid max-w-[1700px] gap-8 lg:grid-cols-[300px_1fr]">
+    <section className="px-4 pb-14 pt-6 sm:px-6 lg:px-10 lg:pb-20 lg:pt-10">
+      <div className="mx-auto grid max-w-[1600px] gap-6 lg:grid-cols-[260px_1fr]">
         {/* SIDEBAR */}
-        <aside className="sticky top-28 hidden h-fit rounded-[2rem] border border-white/45 bg-white/50 p-7 shadow-2xl shadow-black/5 backdrop-blur-md lg:block">
+        <aside className="sticky top-24 hidden h-fit rounded-2xl border border-white/45 bg-white/60 p-5 shadow-lg shadow-black/5 lg:block">
           {/* HEADER */}
           <div className="flex items-center justify-between">
             <div>
               <p
-                className="text-[10px] font-extrabold uppercase tracking-[0.28em]"
+                className="text-[9px] font-bold uppercase tracking-[0.18em]"
                 style={{ color: accent }}
               >
-                Refined Filters
+                Filters
               </p>
 
-              <h2 className="mt-2 text-2xl font-semibold text-stone-950">
+              <h2 className="mt-1 text-xl font-semibold text-stone-950">
                 Discover
               </h2>
             </div>
@@ -36,27 +36,27 @@ export default function CollectionShopSection({
                 setSelectedCategory("All");
                 setSelectedSort("Newest");
               }}
-              className="text-[10px] font-extrabold uppercase tracking-[0.22em] transition duration-300 hover:opacity-70"
+              className="text-[9px] font-bold uppercase tracking-[0.12em] transition duration-300 hover:opacity-70"
               style={{ color: accent }}
             >
               Reset
             </button>
           </div>
 
-          <div className="mt-7 h-px w-full bg-black/5" />
+          <div className="mt-5 h-px w-full bg-black/5" />
 
           {/* CATEGORY */}
-          <div className="mt-10">
+          <div className="mt-7">
             <div className="flex items-center justify-between">
               <h3
-                className="text-[11px] font-extrabold uppercase tracking-[0.24em]"
+                className="text-[10px] font-bold uppercase tracking-[0.16em]"
                 style={{ color: accent }}
               >
                 Categories
               </h3>
 
               <span
-                className="rounded-full px-3 py-1 text-[10px] font-bold"
+                className="rounded-full px-2 py-1 text-[9px] font-bold"
                 style={{
                   backgroundColor: `${accent}15`,
                   color: accent,
@@ -66,7 +66,7 @@ export default function CollectionShopSection({
               </span>
             </div>
 
-            <div className="mt-5 space-y-3">
+            <div className="mt-4 space-y-2.5">
               {categories.map((item) => {
                 const isActive = selectedCategory === item.name;
 
@@ -74,17 +74,16 @@ export default function CollectionShopSection({
                   <button
                     key={item.name}
                     onClick={() => setSelectedCategory(item.name)}
-                    className={`flex w-full items-center justify-between rounded-2xl border px-4 py-4 text-left transition duration-300 ${
+                    className={`flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition duration-300 ${
                       isActive
-                        ? "text-white shadow-lg"
-                        : "border-white/40 bg-white/50 text-stone-700 hover:bg-white"
+                        ? "text-white shadow-md"
+                        : "border-white/40 bg-white/70 text-stone-700 hover:bg-white"
                     }`}
                     style={
                       isActive
                         ? {
                             backgroundColor: accent,
                             borderColor: accent,
-                            boxShadow: `0 10px 30px ${accent}25`,
                           }
                         : {}
                     }
@@ -92,7 +91,7 @@ export default function CollectionShopSection({
                     <span className="text-sm font-medium">{item.name}</span>
 
                     <span
-                      className={`rounded-full px-2 py-1 text-[10px] font-bold ${
+                      className={`rounded-full px-2 py-1 text-[9px] font-bold ${
                         isActive ? "bg-white/20 text-white" : ""
                       }`}
                       style={
@@ -114,26 +113,25 @@ export default function CollectionShopSection({
 
           {/* COLLECTION CARD */}
           <div
-            className="mt-12 overflow-hidden rounded-[1.8rem] p-6 text-white shadow-2xl"
+            className="mt-8 overflow-hidden rounded-2xl p-5 text-white shadow-lg"
             style={{
               backgroundColor: accent,
-              boxShadow: `0 20px 50px ${accent}30`,
             }}
           >
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/70">
+            <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/70">
               {luxuryCard.tag}
             </p>
 
-            <h3 className="mt-4 text-2xl font-semibold leading-snug">
+            <h3 className="mt-3 text-xl font-semibold leading-snug">
               {luxuryCard.title}
             </h3>
 
-            <p className="mt-4 text-sm leading-7 text-white/75">
+            <p className="mt-3 text-sm leading-6 text-white/75">
               {luxuryCard.description}
             </p>
 
             <button
-              className="mt-6 w-full rounded-full bg-white px-5 py-4 text-[10px] font-extrabold uppercase tracking-[0.24em] transition duration-300 hover:opacity-90"
+              className="mt-5 w-full rounded-full bg-white px-4 py-3 text-[9px] font-bold uppercase tracking-[0.14em] transition duration-300 hover:opacity-90"
               style={{ color: accent }}
             >
               {luxuryCard.buttonText}
@@ -144,22 +142,23 @@ export default function CollectionShopSection({
         {/* PRODUCTS AREA */}
         <div>
           {/* TOOLBAR */}
-          <div className="mb-8 flex flex-col gap-5 rounded-[1.8rem] border border-white/45 bg-white/50 p-5 shadow-xl shadow-black/5 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
+          <div className="mb-6 flex flex-col gap-4 rounded-2xl border border-white/45 bg-white/60 p-4 shadow-lg shadow-black/5 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+            {/* LEFT */}
             <div>
               <p
-                className="text-[10px] font-extrabold uppercase tracking-[0.28em]"
+                className="text-[9px] font-bold uppercase tracking-[0.18em]"
                 style={{ color: accent }}
               >
                 FASHO Collection
               </p>
 
-              <h2 className="mt-2 text-2xl font-semibold text-stone-950">
+              <h2 className="mt-1 text-xl font-semibold text-stone-950 sm:text-2xl">
                 {filteredProducts.length} Products
               </h2>
             </div>
 
             {/* SORT */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2">
               {sortOptions.map((item) => {
                 const isActive = selectedSort === item;
 
@@ -167,16 +166,15 @@ export default function CollectionShopSection({
                   <button
                     key={item}
                     onClick={() => setSelectedSort(item)}
-                    className={`rounded-full px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.22em] transition duration-300 ${
+                    className={`rounded-full px-4 py-2.5 text-[9px] font-bold uppercase tracking-[0.1em] transition duration-300 sm:px-5 sm:text-[10px] ${
                       isActive
-                        ? "text-white shadow-lg"
-                        : "border border-black/5 bg-white/60 text-stone-700 hover:bg-white"
+                        ? "text-white shadow-md"
+                        : "border border-black/5 bg-white/70 text-stone-700 hover:bg-white"
                     }`}
                     style={
                       isActive
                         ? {
                             backgroundColor: accent,
-                            boxShadow: `0 10px 30px ${accent}25`,
                           }
                         : {}
                     }
@@ -188,7 +186,7 @@ export default function CollectionShopSection({
             </div>
           </div>
 
-          {/* PRODUCTS GRID */}
+          {/* PRODUCTS */}
           <CollectionProductsSection
             products={filteredProducts}
             accent={accent}

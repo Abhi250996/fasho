@@ -22,9 +22,9 @@ function Rating({ rating }) {
 
 export default function TestimonialsSection() {
   return (
-    <section className="overflow-hidden bg-[#ecead7] px-4 py-14 sm:px-8 lg:px-14 lg:py-24">
-      <div className="mx-auto max-w-[1700px]">
-        {/* TOP SECTION */}
+    <section className="overflow-hidden bg-[#ecead7] px-3 py-12 sm:px-6 lg:px-10 lg:py-20">
+      <div className="mx-auto max-w-[1600px]">
+        {/* TOP */}
         <motion.div
           initial={{
             opacity: 0,
@@ -38,17 +38,17 @@ export default function TestimonialsSection() {
             once: true,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.7,
             ease: luxuryEase,
           }}
-          className="mb-10 flex flex-col gap-6 border-b border-black/6 pb-8 lg:flex-row lg:items-end lg:justify-between"
+          className="mb-8 flex flex-col gap-5 border-b border-black/5 pb-6 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[#6d7d3e] sm:text-xs">
+            <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#6d7d3e] sm:text-[10px] sm:tracking-[0.22em]">
               Client Stories
             </p>
 
-            <h2 className="mt-4 max-w-3xl font-serif text-[clamp(2.6rem,6vw,5.5rem)] leading-[0.92] tracking-[-0.05em] text-stone-950">
+            <h2 className="mt-3 font-serif text-[clamp(2.2rem,8vw,5rem)] leading-[0.92] tracking-[-0.05em] text-stone-950">
               What People
               <span className="block text-[#405821]">Are Saying.</span>
             </h2>
@@ -60,14 +60,14 @@ export default function TestimonialsSection() {
           </p>
         </motion.div>
 
-        {/* CREATIVE STACK */}
-        <div className="grid gap-4 lg:grid-cols-12 lg:gap-5">
+        {/* GRID */}
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {testimonialsData.map((testimonial, index) => (
             <motion.article
               key={testimonial.id}
               initial={{
                 opacity: 0,
-                y: 24,
+                y: 20,
               }}
               whileInView={{
                 opacity: 1,
@@ -78,56 +78,50 @@ export default function TestimonialsSection() {
                 amount: 0.2,
               }}
               transition={{
-                duration: 0.8,
-                delay: index * 0.06,
+                duration: 0.7,
+                delay: index * 0.05,
                 ease: luxuryEase,
               }}
               whileHover={{
-                y: -5,
+                y: -4,
               }}
-              className={`group relative overflow-hidden rounded-[1.7rem] border border-white/40 bg-white/45 p-5 shadow-xl shadow-black/5 backdrop-blur-md transition duration-300 hover:shadow-black/10 sm:p-6 ${
-                index === 0
-                  ? "lg:col-span-5"
-                  : index === 1
-                    ? "lg:col-span-3 lg:mt-10"
-                    : "lg:col-span-4"
-              }`}
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/40 bg-white/50 p-4 shadow-lg shadow-black/5 transition duration-300 hover:shadow-xl sm:p-5"
             >
-              {/* QUOTE ICON */}
-              <Quote className="absolute right-5 top-5 size-10 text-[#405821]/10 sm:size-14" />
+              {/* QUOTE */}
+              <Quote className="absolute right-4 top-4 size-8 text-[#405821]/10 sm:size-10" />
 
               {/* USER */}
-              <div className="relative z-10 flex items-center gap-4">
+              <div className="relative z-10 flex items-center gap-3">
                 <img
                   loading="lazy"
                   decoding="async"
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className={`h-14 w-14 rounded-full object-cover ring-2 ring-white/60 ${testimonial.imagePosition}`}
+                  className={`h-12 w-12 rounded-full object-cover ring-2 ring-white/60 sm:h-14 sm:w-14 ${testimonial.imagePosition}`}
                 />
 
-                <div>
-                  <h3 className="text-base font-semibold text-stone-950 sm:text-lg">
+                <div className="min-w-0">
+                  <h3 className="truncate text-sm font-semibold text-stone-950 sm:text-base">
                     {testimonial.name}
                   </h3>
 
-                  <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 sm:text-[11px]">
+                  <p className="mt-1 text-[8px] font-bold uppercase tracking-[0.1em] text-stone-500 sm:text-[10px]">
                     {testimonial.role}
                   </p>
                 </div>
               </div>
 
               {/* REVIEW */}
-              <p className="relative z-10 mt-6 text-sm leading-7 text-stone-700 sm:text-[15px] sm:leading-8">
+              <p className="relative z-10 mt-4 flex-1 text-sm leading-7 text-stone-700 sm:text-[15px] sm:leading-8">
                 “{testimonial.review}”
               </p>
 
               {/* FOOTER */}
-              <div className="relative z-10 mt-6 flex items-center justify-between border-t border-black/5 pt-5">
+              <div className="relative z-10 mt-5 flex items-center justify-between border-t border-black/5 pt-4">
                 <Rating rating={testimonial.rating} />
 
-                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#405821]">
-                  Verified Client
+                <span className="text-[8px] font-bold uppercase tracking-[0.1em] text-[#405821] sm:text-[9px]">
+                  Verified
                 </span>
               </div>
 

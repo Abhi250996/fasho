@@ -11,7 +11,6 @@ import InstagramGallerySection from "./home/InstagramGallerySection";
 import NewsletterSection from "./home/NewsletterSection";
 
 import Footer from "./layout/Footer";
-import Navbar from "./layout/Navbar";
 
 import HeroContent from "./hero/HeroContent";
 import FloatingBadge from "./hero/FloatingBadge";
@@ -20,18 +19,10 @@ import FeaturedCategories from "./hero/FeaturedCategories";
 
 import { createLuxuryTimeline, gsap } from "../lib/animations";
 
-import { useParallax } from "../hooks/useParallax";
-
 export default function LuxuryHero() {
   const heroRef = useRef(null);
 
-  const heroImageRef = useParallax({
-    yPercent: -5,
-    scale: 1.02,
-    start: "top top",
-    end: "bottom top",
-    scrub: 1.4,
-  });
+  const heroImageRef = useRef(null);
 
   useEffect(() => {
     if (
@@ -64,12 +55,12 @@ export default function LuxuryHero() {
   }, []);
 
   return (
-    <main className="bg-[#ecead7] text-stone-950">
+    <main className="overflow-x-hidden bg-[#ecead7] text-stone-950">
       {/* HERO */}
-      <div
+      <section
         ref={heroRef}
         id="home"
-        className="relative min-h-[92vh] overflow-hidden bg-[#ecead7] lg:min-h-screen"
+        className="relative min-h-screen overflow-hidden bg-[#ecead7]"
       >
         {/* BACKGROUND */}
         <div
@@ -84,12 +75,11 @@ export default function LuxuryHero() {
         />
 
         {/* DESKTOP DIVIDER */}
-        <div className="absolute inset-y-0 left-[50%] z-10 hidden w-px bg-white/80 shadow-[0_0_0_8px_rgba(255,255,255,0.32)] lg:block" />
+        <div className="absolute inset-y-0 left-1/2 z-10 hidden w-px bg-white/80 shadow-[0_0_0_8px_rgba(255,255,255,0.32)] lg:block" />
 
         {/* HERO IMAGE */}
         <motion.div
           ref={heroImageRef}
-          data-hero-image
           animate={{
             y: [0, -8, 0],
           }}
@@ -98,14 +88,14 @@ export default function LuxuryHero() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-0 right-0 z-0 h-[48vh] w-full lg:inset-y-0 lg:h-full lg:w-[55%]"
+          className="absolute right-0 top-0 z-0 h-[55vh] w-full overflow-hidden lg:h-full lg:w-[55%]"
         >
           <img
             fetchPriority="high"
             decoding="async"
             src={heroBg}
             alt="Fashion model wearing olive resort shirt and ivory trousers"
-            className="h-full w-full object-cover object-center opacity-95 lg:object-center"
+            className="h-full w-full object-cover object-center opacity-95"
           />
 
           {/* LIGHT OVERLAY */}
@@ -118,19 +108,16 @@ export default function LuxuryHero() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#ecead7] lg:hidden" />
         </motion.div>
 
-        {/* NAVBAR */}
-        <Navbar />
-
         {/* HERO CONTENT */}
-        <section className="relative z-20 flex min-h-[92vh] flex-col justify-end pb-8 pt-[42vh] lg:min-h-screen lg:justify-center lg:pb-36 lg:pt-0">
+        <div className="relative z-20 flex min-h-screen flex-col justify-end pb-8 pt-[48vh] lg:justify-center lg:pb-36 lg:pt-0">
           <HeroContent />
 
           <FloatingBadge />
-        </section>
+        </div>
 
         {/* FEATURES */}
         <BottomFeaturesBar />
-      </div>
+      </section>
 
       {/* SECTIONS */}
       <div data-global-reveal>

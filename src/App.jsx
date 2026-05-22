@@ -1,5 +1,4 @@
 import { useEffect, useRef, lazy, Suspense } from "react";
-
 import { Routes, Route } from "react-router-dom";
 
 import LuxuryHero from "./components/LuxuryHero";
@@ -10,6 +9,9 @@ import { createPageTransition } from "./lib/animations";
 import { useRevealAnimation } from "./hooks/useRevealAnimation";
 
 import ScrollToTop from "./common/ScrollToTop";
+
+import Navbar from "./components/layout/Navbar";
+import ScrollToTopButton from "./common/ScrollToTopButton";
 
 /* LAZY LOADED PAGES */
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
@@ -51,48 +53,45 @@ function App() {
   }, []);
 
   return (
-    <div ref={appRef} className="min-h-screen overflow-x-hidden bg-[#f5f1e8]">
-      {/* CART */}
-      <CartDrawer />
+    <>
+      {/* GLOBAL COMPONENTS */}
+      <ScrollToTop />
 
-      <div ref={revealRef}>
-        {/* AUTO SCROLL TOP */}
-        <ScrollToTop />
+      <Navbar />
 
-        {/* ROUTES */}
-        <Suspense
-          fallback={
-            <div className="flex min-h-screen items-center justify-center bg-[#f5f1e8]">
-              <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#405821] border-t-transparent" />
-            </div>
-          }
-        >
-          <Routes>
-            {/* HOME */}
-            <Route path="/" element={<LuxuryHero />} />
+      <ScrollToTopButton />
 
-            {/* ABOUT */}
-            <Route path="/about" element={<LuxuryAboutSection />} />
+      {/* APP CONTENT */}
+      <div ref={appRef} className="min-h-screen overflow-x-hidden bg-[#f5f1e8]">
+        <CartDrawer />
 
-            {/* CHECKOUT */}
-            <Route path="/checkout" element={<CheckoutPage />} />
+        <div ref={revealRef}>
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center bg-[#f5f1e8]">
+                <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#405821] border-t-transparent" />
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<LuxuryHero />} />
 
-            {/* CART */}
-            <Route path="/cart" element={<CartPage />} />
+              <Route path="/about" element={<LuxuryAboutSection />} />
 
-            {/* SUCCESS */}
-            <Route path="/order-success" element={<OrderSuccessPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
 
-            {/* ACCOUNT */}
-            <Route path="/account" element={<ProfilePage />} />
+              <Route path="/cart" element={<CartPage />} />
 
-            {/* COLLECTIONS */}
-            <Route path="/:type" element={<CollectionPage />} />
-          </Routes>
-        </Suspense>
+              <Route path="/order-success" element={<OrderSuccessPage />} />
+
+              <Route path="/account" element={<ProfilePage />} />
+
+              <Route path="/:type" element={<CollectionPage />} />
+            </Routes>
+          </Suspense>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
-
 export default App;

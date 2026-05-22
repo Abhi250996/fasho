@@ -1,61 +1,71 @@
-import { Bell, Lock, LogOut } from "lucide-react";
+import { Bell, Lock, LogOut, ChevronRight } from "lucide-react";
+
+const settings = [
+  {
+    icon: Bell,
+    title: "Notifications",
+    description: "Manage updates and alerts",
+  },
+
+  {
+    icon: Lock,
+    title: "Security",
+    description: "Password and authentication",
+  },
+
+  {
+    icon: LogOut,
+    title: "Logout",
+    description: "Sign out from account",
+  },
+];
 
 export default function ProfileSettings() {
   return (
-    <section className="px-4 pb-16 pt-4 sm:px-6 lg:px-10 lg:pb-24">
-      <div className="mx-auto max-w-[1700px] rounded-[2rem] border border-white/40 bg-white/40 p-6 shadow-lg shadow-black/5 backdrop-blur-md sm:p-8">
-        <p className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#6d7d3e]">
-          Preferences
-        </p>
+    <section className="px-3 pb-10 pt-3 sm:px-5 lg:px-8 lg:pb-16">
+      <div className="mx-auto max-w-[1600px] rounded-2xl border border-white/40 bg-white/50 p-4 shadow-lg shadow-black/5 sm:p-6 lg:p-7">
+        {/* HEADER */}
+        <div>
+          <p className="text-[8px] font-bold uppercase tracking-[0.12em] text-[#6d7d3e] sm:text-[9px]">
+            Preferences
+          </p>
 
-        <h2 className="mt-3 text-3xl font-semibold text-stone-950">
-          Account Settings
-        </h2>
+          <h2 className="mt-1 text-2xl font-semibold text-stone-950 sm:text-3xl">
+            Account Settings
+          </h2>
+        </div>
 
-        <div className="mt-8 space-y-4">
-          {[
-            {
-              icon: Bell,
-              title: "Notifications",
-              description: "Manage updates and alerts",
-            },
-
-            {
-              icon: Lock,
-              title: "Security",
-              description: "Password and authentication",
-            },
-
-            {
-              icon: LogOut,
-              title: "Logout",
-              description: "Sign out from your account",
-            },
-          ].map((item) => {
+        {/* SETTINGS */}
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {settings.map((item) => {
             const Icon = item.icon;
 
             return (
               <button
                 key={item.title}
-                className="flex w-full items-center justify-between rounded-[1.4rem] border border-black/5 bg-white/50 p-5 text-left transition duration-300 hover:bg-white"
+                className="group flex items-center justify-between rounded-2xl border border-black/5 bg-white/60 p-4 text-left shadow-sm transition duration-300 hover:bg-white hover:shadow-md sm:p-5"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#405821]/10 text-[#405821]">
-                    <Icon className="size-5" />
+                {/* LEFT */}
+                <div className="flex min-w-0 items-center gap-3">
+                  {/* ICON */}
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#405821]/10 text-[#405821] sm:h-11 sm:w-11">
+                    <Icon className="size-4 sm:size-5" />
                   </div>
 
-                  <div>
-                    <h3 className="text-base font-semibold text-stone-950">
+                  {/* CONTENT */}
+                  <div className="min-w-0">
+                    <h3 className="truncate text-sm font-semibold text-stone-950 sm:text-base">
                       {item.title}
                     </h3>
 
-                    <p className="mt-1 text-sm text-stone-500">
+                    <p className="mt-1 text-xs leading-5 text-stone-500 sm:text-sm">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="h-2 w-2 rounded-full bg-[#405821]" />
+                {/* RIGHT ICON */}
+                <ChevronRight className="size-4 shrink-0 text-stone-400 transition duration-300 group-hover:translate-x-1 group-hover:text-[#405821]" />
               </button>
             );
           })}

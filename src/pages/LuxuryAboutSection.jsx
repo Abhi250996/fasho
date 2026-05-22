@@ -1,15 +1,11 @@
 import { motion } from "framer-motion";
-import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 export default function LuxuryAboutSection() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f3efe6] text-stone-950">
-      {/* NAVBAR */}
-      <Navbar />
-
       {/* HERO / ABOUT SECTION */}
-      <section className="relative overflow-hidden px-5 pb-24 pt-32 sm:px-8 lg:px-14 lg:pb-32 lg:pt-40">
+      <section className="relative overflow-hidden px-5 pb-24 pt-10 sm:px-8 lg:px-14 lg:pb-32 lg:pt-16">
         {/* AMBIENT GLOW */}
         <div className="pointer-events-none absolute left-[-10%] top-0 h-[26rem] w-[26rem] rounded-full bg-[#cad39f]/20 blur-2xl" />
 

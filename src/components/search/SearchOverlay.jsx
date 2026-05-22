@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
 import { Search, X, ArrowUpRight } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
@@ -42,110 +43,120 @@ export default function SearchOverlay({ isOpen, onClose }) {
               opacity: 0,
             }}
             onClick={onClose}
-            className="fixed inset-0 z-[90] bg-black/40 backdrop-blur-md"
+            className="fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm"
           />
 
-          {/* MODAL */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: 20,
-            }}
-            transition={{
-              duration: 0.35,
-            }}
-            className="fixed inset-x-0 top-0 z-[100] mx-auto w-full max-w-[980px] p-4 sm:p-6"
-          >
-            <div className="overflow-hidden rounded-[2rem] border border-white/20 bg-[#ecead7]/95 shadow-2xl backdrop-blur-2xl">
-              {/* SEARCH BAR */}
-              <div className="flex items-center gap-4 border-b border-black/5 px-5 py-5 sm:px-7">
-                <Search className="size-5 text-stone-500" />
+          {/* CENTER WRAPPER */}
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5">
+            {/* MODAL */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.96,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: 15,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="w-full max-w-[920px]"
+            >
+              <div className="overflow-hidden rounded-2xl border border-white/20 bg-[#ecead7]/95 shadow-2xl backdrop-blur-xl sm:rounded-[2rem]">
+                {/* SEARCH BAR */}
+                <div className="flex items-center gap-3 border-b border-black/5 px-4 py-4 sm:px-6 sm:py-5">
+                  <Search className="size-4 shrink-0 text-stone-500 sm:size-5" />
 
-                <input
-                  autoFocus
-                  type="text"
-                  placeholder="Search products..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full bg-transparent text-base text-stone-950 outline-none placeholder:text-stone-400 sm:text-lg"
-                />
+                  <input
+                    autoFocus
+                    type="text"
+                    placeholder="Search products..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full bg-transparent text-sm text-stone-950 outline-none placeholder:text-stone-400 sm:text-base"
+                  />
 
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="grid size-10 place-items-center rounded-full transition duration-300 hover:bg-white/60"
-                >
-                  <X className="size-5" />
-                </button>
-              </div>
-
-              {/* RESULTS */}
-              <div className="max-h-[70vh] overflow-y-auto p-4 sm:p-6">
-                <div className="mb-5 flex items-center justify-between">
-                  <p className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#6d7d3e]">
-                    Search Results
-                  </p>
-
-                  <p className="text-sm text-stone-500">
-                    {filteredProducts.length} products
-                  </p>
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="grid size-9 shrink-0 place-items-center rounded-full transition duration-300 hover:bg-white/60 sm:size-10"
+                  >
+                    <X className="size-4 sm:size-5" />
+                  </button>
                 </div>
 
-                {/* GRID */}
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {filteredProducts.map((product) => (
-                    <button
-                      key={product.id}
-                      onClick={() => {
-                        navigate("/collections");
+                {/* RESULTS */}
+                <div className="max-h-[70vh] overflow-y-auto p-3 sm:p-5">
+                  {/* HEADER */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <p className="text-[8px] font-bold uppercase tracking-[0.12em] text-[#6d7d3e] sm:text-[10px] sm:tracking-[0.2em]">
+                      Search Results
+                    </p>
 
-                        onClose();
-                      }}
-                      className="group overflow-hidden rounded-[1.2rem] bg-white/60 text-left shadow-lg shadow-black/5 transition duration-300 hover:-translate-y-1"
-                    >
-                      {/* IMAGE */}
-                      <div className="overflow-hidden aspect-[3/3.5] bg-[#ddd7ca]">
-                        <img
-                          loading="lazy"
-                          decoding="async"
-                          src={product.image}
-                          alt={product.name}
-                          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                        />
-                      </div>
+                    <p className="text-xs text-stone-500 sm:text-sm">
+                      {filteredProducts.length} products
+                    </p>
+                  </div>
 
-                      {/* CONTENT */}
-                      <div className="p-3">
-                        <p className="text-[8px] font-extrabold uppercase tracking-[0.18em] text-[#6d7d3e]">
-                          {product.category}
-                        </p>
+                  {/* GRID */}
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3">
+                    {filteredProducts.map((product) => (
+                      <button
+                        key={product.id}
+                        onClick={() => {
+                          navigate("/collections");
 
-                        <div className="mt-2 flex items-start justify-between gap-3">
-                          <h3 className="line-clamp-2 text-sm font-semibold text-stone-950">
-                            {product.name}
-                          </h3>
-
-                          <ArrowUpRight className="size-4 shrink-0 text-[#405821]" />
+                          onClose();
+                        }}
+                        className="group overflow-hidden rounded-xl bg-white/70 text-left shadow-md shadow-black/5 transition duration-300 hover:-translate-y-1 sm:rounded-[1.2rem]"
+                      >
+                        {/* IMAGE */}
+                        <div className="aspect-[3/3.6] overflow-hidden bg-[#ddd7ca]">
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src={product.image}
+                            alt={product.name}
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          />
                         </div>
 
-                        <p className="mt-2 text-sm font-semibold text-[#405821]">
-                          {product.price}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
+                        {/* CONTENT */}
+                        <div className="p-2.5 sm:p-3">
+                          {/* CATEGORY */}
+                          <p className="text-[7px] font-bold uppercase tracking-[0.08em] text-[#6d7d3e] sm:text-[8px] sm:tracking-[0.14em]">
+                            {product.category}
+                          </p>
+
+                          {/* TITLE */}
+                          <div className="mt-1.5 flex items-start justify-between gap-2">
+                            <h3 className="line-clamp-2 text-xs font-semibold leading-5 text-stone-950 sm:text-sm">
+                              {product.name}
+                            </h3>
+
+                            <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 text-[#405821] sm:size-4" />
+                          </div>
+
+                          {/* PRICE */}
+                          <p className="mt-1.5 text-xs font-semibold text-[#405821] sm:mt-2 sm:text-sm">
+                            {product.price}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>

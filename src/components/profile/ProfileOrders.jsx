@@ -26,44 +26,60 @@ const orders = [
 
 export default function ProfileOrders() {
   return (
-    <section className="px-4 py-4 sm:px-6 lg:px-10 lg:py-6">
-      <div className="mx-auto max-w-[1700px] rounded-[2rem] border border-white/40 bg-white/40 p-6 shadow-lg shadow-black/5 backdrop-blur-md sm:p-8">
-        <div className="flex items-center justify-between">
+    <section className="px-3 py-3 sm:px-5 lg:px-8 lg:py-5">
+      <div className="mx-auto max-w-[1600px] rounded-2xl border border-white/40 bg-white/50 p-4 shadow-lg shadow-black/5 sm:p-6 lg:p-7">
+        {/* HEADER */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#6d7d3e]">
+            <p className="text-[8px] font-bold uppercase tracking-[0.12em] text-[#6d7d3e] sm:text-[9px]">
               Order History
             </p>
 
-            <h2 className="mt-3 text-3xl font-semibold text-stone-950">
+            <h2 className="mt-1 text-2xl font-semibold text-stone-950 sm:text-3xl">
               Recent Orders
             </h2>
           </div>
+
+          {/* BUTTON */}
+          <button className="w-fit rounded-full border border-black/5 bg-white px-4 py-2 text-[9px] font-bold uppercase tracking-[0.1em] text-stone-700 transition duration-300 hover:bg-[#405821] hover:text-white sm:px-5 sm:text-[10px]">
+            View All
+          </button>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-[1.5rem] border border-black/5">
+        {/* ORDERS */}
+        <div className="mt-5 overflow-hidden rounded-2xl border border-black/5">
           {orders.map((order) => (
             <div
               key={order.id}
-              className="flex flex-col gap-5 border-b border-black/5 bg-white/40 p-5 last:border-b-0 lg:flex-row lg:items-center lg:justify-between"
+              className="grid gap-4 border-b border-black/5 bg-white/50 p-4 last:border-b-0 sm:grid-cols-2 lg:grid-cols-[1fr_auto] lg:items-center lg:px-5"
             >
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#405821]">
+              {/* LEFT */}
+              <div className="min-w-0">
+                {/* ORDER ID */}
+                <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#405821]">
                   {order.id}
                 </p>
 
-                <h3 className="mt-2 text-lg font-semibold text-stone-950">
+                {/* PRODUCT */}
+                <h3 className="mt-1 line-clamp-1 text-sm font-semibold text-stone-950 sm:text-base">
                   {order.item}
                 </h3>
 
-                <p className="mt-1 text-sm text-stone-500">{order.date}</p>
+                {/* DATE */}
+                <p className="mt-1 text-xs text-stone-500 sm:text-sm">
+                  {order.date}
+                </p>
               </div>
 
-              <div className="flex items-center gap-4">
-                <span className="rounded-full bg-[#405821]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#405821]">
+              {/* RIGHT */}
+              <div className="flex items-center justify-between gap-3 sm:justify-end">
+                {/* STATUS */}
+                <span className="rounded-full bg-[#405821]/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#405821] sm:px-4 sm:text-[10px]">
                   {order.status}
                 </span>
 
-                <p className="text-lg font-semibold text-stone-950">
+                {/* AMOUNT */}
+                <p className="text-base font-semibold text-stone-950 sm:text-lg">
                   {order.amount}
                 </p>
               </div>

@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { collectionConfig } from "../config/collectionConfig";
 
@@ -15,6 +14,7 @@ export default function CollectionPage() {
 
   const currentCollection =
     collectionConfig[normalizedType] || collectionConfig.men;
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [selectedSort, setSelectedSort] = useState("Newest");
@@ -64,9 +64,6 @@ export default function CollectionPage() {
     <main
       className={`min-h-screen ${currentCollection.pageBackground} text-stone-950`}
     >
-      {/* NAVBAR */}
-      <Navbar />
-
       {/* BANNER */}
       <CollectionBanner
         brand={currentCollection.brand}

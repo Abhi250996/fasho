@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { motion, AnimatePresence } from "framer-motion";
-
 import { useCart } from "../../context/CartContext";
-
 import { navItems } from "../../constants/homeData";
-
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
-
 import SearchOverlay from "../search/SearchOverlay";
 
 function Navbar() {
@@ -21,7 +15,6 @@ function Navbar() {
   );
 
   const navigate = useNavigate();
-
   const location = useLocation();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,37 +23,65 @@ function Navbar() {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  /* SIMPLE SCROLL EFFECT */
+  const [showNavbar, setShowNavbar] = useState(true);
+  /* SCROLL EFFECT */
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+
+      // BG + SHADOW
+      setIsScrolled(currentScrollY > 10);
+
+      // USER UP SCROLL KAR RAHA HAI
+      if (currentScrollY < lastScrollY) {
+        setShowNavbar(true);
+      }
+
+      // USER DOWN SCROLL KAR RAHA HAI
+      else {
+        setShowNavbar(false);
+      }
+
+      // TOP PE ALWAYS SHOW
+      if (currentScrollY < 10) {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* LOCK BODY SCROLL WHEN MENU OPEN */
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
-      {/* NAVBAR */}
-      <motion.header
-        initial={{
-          opacity: 0,
-          y: -18,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.7,
-          ease: "easeOut",
-        }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      {/* FIXED NAVBAR */}
+      <header
+        className={`fixed left-0 right-0 top-0 z-[99999] w-full transition-transform duration-300 ${
+          showNavbar ? "translate-y-0" : "-translate-y-full"
+        } ${
           isScrolled
-            ? "border-b border-black/5 bg-[#ecead7]/92 shadow-lg shadow-black/5 backdrop-blur-xl"
-            : "bg-[#ecead7]/72 backdrop-blur-lg"
+            ? "border-b border-black/5 bg-[#ecead7] shadow-lg shadow-black/5"
+            : "bg-[#ecead7]"
         }`}
       >
         <nav
@@ -110,7 +131,7 @@ function Navbar() {
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
-              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white/55 shadow-sm backdrop-blur-sm transition duration-300 hover:bg-white sm:size-10"
+              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white shadow-sm transition duration-300 hover:bg-gray-100 sm:size-10"
               aria-label="Search"
             >
               <Search className="size-4 stroke-[1.8] sm:size-5" />
@@ -120,7 +141,7 @@ function Navbar() {
             <button
               type="button"
               onClick={() => navigate("/account")}
-              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white/55 shadow-sm backdrop-blur-sm transition duration-300 hover:bg-white sm:size-10"
+              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white shadow-sm transition duration-300 hover:bg-gray-100 sm:size-10"
               aria-label="Account"
             >
               <User className="size-4 stroke-[1.8] sm:size-5" />
@@ -130,7 +151,7 @@ function Navbar() {
             <button
               type="button"
               onClick={() => navigate("/cart")}
-              className="relative grid size-9 place-items-center rounded-full border border-black/5 bg-white/55 shadow-sm backdrop-blur-sm transition duration-300 hover:bg-white sm:size-10"
+              className="relative grid size-9 place-items-center rounded-full border border-black/5 bg-white shadow-sm transition duration-300 hover:bg-gray-100 sm:size-10"
               aria-label="Shopping bag"
             >
               <ShoppingBag className="size-4 stroke-[1.8] sm:size-5" />
@@ -157,14 +178,14 @@ function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white/55 shadow-sm backdrop-blur-sm transition duration-300 hover:bg-white lg:hidden sm:size-10"
+              className="grid size-9 place-items-center rounded-full border border-black/5 bg-white shadow-sm transition duration-300 hover:bg-gray-100 lg:hidden sm:size-10"
               aria-label="Open menu"
             >
               <Menu className="size-5 stroke-[1.8]" />
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -172,20 +193,14 @@ function Navbar() {
           <>
             {/* OVERLAY */}
             <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm"
+              className="fixed inset-0 z-[9998] bg-black/40"
             />
 
-            {/* DRAWER */}
+            {/* SIDEBAR */}
             <motion.div
               initial={{
                 x: "100%",
@@ -200,9 +215,9 @@ function Navbar() {
                 duration: 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="fixed right-0 top-0 z-[70] flex h-screen w-full max-w-[300px] flex-col border-l border-white/20 bg-[#ecead7]/96 shadow-2xl backdrop-blur-xl"
+              className="fixed right-0 top-0 z-[9999] flex h-screen w-full max-w-[300px] flex-col border-l border-white/20 bg-[#ecead7] shadow-2xl"
             >
-              {/* HEADER */}
+              {/* TOP */}
               <div className="flex items-center justify-between border-b border-black/5 px-5 py-5">
                 <h2 className="text-2xl font-black tracking-tight text-stone-950">
                   FASHO.
@@ -211,7 +226,7 @@ function Navbar() {
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="grid size-9 place-items-center rounded-full bg-white/60 transition duration-300 hover:bg-white"
+                  className="grid size-9 place-items-center rounded-full bg-white transition duration-300 hover:bg-gray-100"
                 >
                   <X className="size-4" />
                 </button>
@@ -239,28 +254,6 @@ function Navbar() {
                     );
                   })}
                 </div>
-
-                {/* FOOTER CARD */}
-                <div className="mt-auto rounded-[1.3rem] border border-white/40 bg-white/50 p-5 shadow-lg shadow-black/5 backdrop-blur-sm">
-                  <p className="text-[9px] font-extrabold uppercase tracking-[0.22em] text-[#6d7d3e]">
-                    Luxury Fashion
-                  </p>
-
-                  <h3 className="mt-3 text-xl font-semibold leading-snug text-stone-950">
-                    Elevated Everyday Essentials.
-                  </h3>
-
-                  <button
-                    onClick={() => {
-                      navigate("/men");
-
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="mt-5 w-full rounded-full bg-[#405821] px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.2em] text-white shadow-lg shadow-[#405821]/15 transition duration-300 hover:bg-[#314417]"
-                  >
-                    Shop Now
-                  </button>
-                </div>
               </div>
             </motion.div>
           </>
@@ -272,6 +265,8 @@ function Navbar() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
       />
+
+      {/* PAGE SPACING */}
     </>
   );
 }

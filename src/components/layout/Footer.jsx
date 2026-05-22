@@ -125,123 +125,93 @@ function SocialButton({ icon: Icon, label }) {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#e7e2ca] px-5 pt-20 text-stone-950 sm:px-8 sm:pt-24 lg:px-14 lg:pt-28">
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#ecead7] via-[#e7e2ca]/95 to-transparent" />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-10%] top-20 h-96 w-96 rounded-full bg-[#cdd5a6]/42 blur-2xl"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, -16, 0], y: [0, 20, 0] }}
-        transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-0 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#dbc5a4]/48 blur-2xl"
-      />
-
-      <motion.div
-        initial={{ opacity: 0, y: 34 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.95, ease: luxuryEase }}
-        className="relative mx-auto max-w-[1620px] overflow-hidden rounded-2xl border border-white/45 bg-white/30 shadow-2xl shadow-[#39461e]/12 backdrop-blur-md"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(255,255,255,0.58),transparent_32%),linear-gradient(135deg,rgba(242,237,214,0.7),rgba(221,226,187,0.42),rgba(236,218,194,0.5))]" />
-
-        <div className="relative grid gap-10 px-6 py-12 sm:px-8 sm:py-14 md:grid-cols-2 lg:grid-cols-[1.25fr_0.8fr_0.95fr_1.1fr_0.95fr] lg:gap-9 xl:gap-12 xl:px-12 xl:py-16">
-          <div>
+    <footer className="relative overflow-hidden bg-[#e7e2ca] px-3 pt-6 text-stone-950 sm:px-6 lg:px-10 lg:pt-10">
+      <div className="mx-auto max-w-[1500px] rounded-2xl border border-black/5 bg-white/50 shadow-md">
+        {/* MAIN CONTENT */}
+        <div className="grid grid-cols-2 gap-6 px-4 py-5 sm:px-6 md:grid-cols-4 lg:grid-cols-5 lg:gap-8 lg:px-8 lg:py-8">
+          {/* BRAND */}
+          <div className="col-span-2 lg:col-span-2">
             <a
               href="#home"
-              className="text-4xl font-black tracking-tight text-stone-950 transition duration-300 hover:text-[#405821]"
-              aria-label="Fasho home"
+              className="text-2xl font-black tracking-tight text-stone-950 sm:text-3xl"
             >
               FASHO.
             </a>
-            <p className="mt-6 max-w-sm text-lg leading-8 text-stone-800">
-              Timeless essentials crafted for modern living. Designed with
-              restraint, shaped with premium fabrics, and made to move through
-              every season.
+
+            <p className="mt-3 max-w-sm text-xs leading-6 text-stone-700 sm:text-sm">
+              Timeless essentials crafted for modern living with premium fabrics
+              and elevated aesthetics.
             </p>
-            <div className="mt-7 flex items-center gap-3">
+
+            {/* SOCIAL */}
+            <div className="mt-4 flex flex-wrap items-center gap-2">
               {socialLinks.map((item) => (
                 <SocialButton key={item.label} {...item} />
               ))}
+
               <SocialButton icon={PinterestIcon} label="Pinterest" />
             </div>
           </div>
 
+          {/* NAVIGATION */}
           <div>
-            <h3 className="font-serif text-2xl font-medium text-stone-950">
+            <h3 className="text-sm font-semibold text-stone-950 sm:text-base">
               Navigate
             </h3>
-            <div className="mt-6 flex flex-col gap-4">
+
+            <div className="mt-3 flex flex-col gap-2">
               {navigationLinks.map((link) => (
                 <FooterLink key={link}>{link}</FooterLink>
               ))}
             </div>
           </div>
 
+          {/* SUPPORT */}
           <div>
-            <h3 className="font-serif text-2xl font-medium text-stone-950">
+            <h3 className="text-sm font-semibold text-stone-950 sm:text-base">
               Support
             </h3>
-            <div className="mt-6 flex flex-col gap-4">
+
+            <div className="mt-3 flex flex-col gap-2">
               {supportLinks.map((link) => (
                 <FooterLink key={link}>{link}</FooterLink>
               ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="font-serif text-2xl font-medium text-stone-950">
+          {/* CONTACT */}
+          <div className="col-span-2 md:col-span-4 lg:col-span-1">
+            <h3 className="text-sm font-semibold text-stone-950 sm:text-base">
               Contact
             </h3>
-            <div className="mt-6 flex flex-col gap-5">
+
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {contactItems.map(({ icon: Icon, text }) => (
-                <div
-                  key={text}
-                  className="flex items-start gap-4 text-stone-700"
-                >
-                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[#728341] text-white shadow-lg shadow-[#526632]/16">
-                    <Icon className="size-4 stroke-[1.8]" />
+                <div key={text} className="flex items-start gap-2">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#405821] text-white">
+                    <Icon className="size-3.5" />
                   </span>
-                  <p className="pt-2 text-sm font-semibold leading-6">{text}</p>
+
+                  <p className="min-w-0 break-words text-xs leading-5 text-stone-700 sm:text-sm">
+                    {text}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-
-          <div>
-            <h3 className="font-serif text-2xl font-medium text-stone-950">
-              Payments
-            </h3>
-            <p className="mt-6 text-sm leading-7 text-stone-700">
-              Secure checkout with premium global payment options.
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              {paymentMethods.map((method) => (
-                <motion.span
-                  key={method}
-                  whileHover={{ y: -3 }}
-                  className="rounded-full border border-[#405821]/15 bg-white/38 px-4 py-3 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-stone-700 shadow-lg shadow-[#39461e]/6 backdrop-blur-md transition duration-300 hover:bg-[#405821] hover:text-white hover:shadow-[#405821]/20"
-                >
-                  {method}
-                </motion.span>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <div className="relative flex flex-col items-center justify-between gap-5 border-t border-[#526632]/15 px-6 py-6 text-center sm:px-8 md:flex-row md:text-left xl:px-12">
-          <p className="text-sm font-semibold text-stone-700">
+        {/* BOTTOM */}
+        <div className="flex flex-col gap-2 border-t border-black/5 px-4 py-3 text-center sm:px-6 md:flex-row md:items-center md:justify-between md:text-left lg:px-8">
+          <p className="text-[11px] text-stone-600">
             © 2026 FASHO. All rights reserved.
           </p>
-          <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#405821]">
+
+          <p className="text-[8px] font-bold uppercase tracking-[0.1em] text-[#405821]">
             Editorial essentials for modern luxury
           </p>
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 }
